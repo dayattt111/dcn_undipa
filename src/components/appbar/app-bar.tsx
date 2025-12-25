@@ -1,6 +1,6 @@
 'use client'
 
-import React, { FC, Fragment, useCallback, useMemo } from 'react'
+import React, { FC, Fragment, useCallback, useMemo, useState, useEffect } from 'react'
 
 // components
 import Box from '@mui/material/Box'
@@ -10,7 +10,6 @@ import AppBarSwitchDarkMode from './switch-dark-mode'
 import AnimatedHamburgerMenu from './animated-hamburger-menu'
 
 // hooks
-import { useWindowScroll } from 'react-use'
 import { useMediaQuery } from '@mui/material'
 import { useTheme, Theme } from '@mui/material/styles'
 import { usePathname, useRouter } from 'next/navigation'
@@ -20,9 +19,17 @@ import Logo from '@/assets/logo.svg'
 
 const AppBar: FC = () => {
   const theme = useTheme()
-  const { y: scrollY } = useWindowScroll()
-  // const scrollY = 0
+  const [scrollY, setScrollY] = useState(0)
   const mobileMatches = useMediaQuery(theme.breakpoints.down('md'))
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const router = useRouter()
   const pathName = usePathname()
