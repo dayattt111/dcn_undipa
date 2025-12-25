@@ -138,12 +138,12 @@ const HomeAbout = () => {
       <Container>
         <Grid container spacing={{ xs: 4, md: 8 }}>
           <Grid size={{ xs: 12, md: 7 }} sx={{ pr: { xs: 0, md: 6 } }}>
-            <Box sx={{ position: 'relative', width: '100%', maxWidth: { md: 400 } }}>
+            <Box sx={{ position: 'relative', width: '100%', maxWidth: { md: 500 } }}>
               <SectionTitle>TENTANG KAMI</SectionTitle>
               <Typography
                 variant='h2'
                 component='h2'
-                sx={{ mb: { xs: 2, md: 3 }, fontWeight: '700', fontSize: { xs: 24, sm: 28, md: 36 } }}
+                sx={{ mb: { xs: 2, md: 3 }, fontWeight: '800', fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem' } }}
               >
                 Dicoding Community Network UNDIPA
               </Typography>
@@ -153,56 +153,57 @@ const HomeAbout = () => {
                 sx={{
                   color: 'text.primary',
                   fontWeight: '600',
-                  fontSize: { xs: 17, sm: 19, md: 24 },
+                  fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.35rem' },
                   mb: 2,
-                  lineHeight: 1.4,
+                  lineHeight: 1.6,
                 }}
               >
-                Komunitas developer yang belajar dan berkembang bersama.
+                Komunitas developer yang belajar dan berkembang bersama
               </Typography>
               <Typography
                 sx={{
                   color: 'text.secondary',
-                  fontSize: { xs: 14, sm: 16, md: 18 },
+                  fontSize: { xs: '0.95rem', sm: '1rem', md: '1.1rem' },
                   mb: 2,
-                  lineHeight: 1.7,
+                  lineHeight: 1.8,
                 }}
               >
-                DCN UNDIPA adalah komunitas developer di Universitas Dipa Makassar 
-                yang berkolaborasi dengan <strong>Dicoding Indonesia</strong> untuk 
+                DCN UNDIPA adalah komunitas developer di Universitas Pendidikan Indonesia
+                yang berkolaborasi dengan <strong>Dicoding Indonesia</strong> untuk
                 memfasilitasi pembelajaran dan pengembangan skill programming.
               </Typography>
               <Typography
                 sx={{
                   color: 'text.secondary',
-                  fontSize: { xs: 14, sm: 16, md: 18 },
+                  fontSize: { xs: '0.95rem', sm: '1rem', md: '1.1rem' },
                   mb: { xs: 3, md: 4 },
-                  lineHeight: 1.7,
+                  lineHeight: 1.8,
                 }}
               >
-                Melalui berbagai program seperti bootcamp, study group, dan event, 
+                Melalui berbagai program seperti bootcamp, study group, dan workshop,
                 kami membantu anggota mencapai milestone dan membangun portofolio profesional.
               </Typography>
             </Box>
             <Box>
               <Typography
                 sx={{
-                  fontSize: 14,
-                  fontWeight: 600,
+                  fontSize: '0.875rem',
+                  fontWeight: 700,
                   mb: 2,
                   textTransform: 'uppercase',
-                  color: 'text.secondary',
+                  letterSpacing: 1,
+                  color: 'primary.main',
                 }}
               >
-                Program Unggulan:
+                Program Unggulan
               </Typography>
               <Grid
                 container
-                spacing={1}
+                spacing={2}
                 sx={{ position: 'relative', zIndex: 2 }}
               >
                 {data.map((item, index) => (
-                  <Grid key={String(item.id + index)} size={{ xs: 6, md: 3 }}>
+                  <Grid key={String(item.id + index)} size={{ xs: 6, sm: 6, md: 3 }}>
                     <FeatureItem item={item} />
                   </Grid>
                 ))}
