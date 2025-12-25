@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Box from '@mui/material/Box'
@@ -16,6 +16,7 @@ import { useTheme } from '@mui/material/styles'
 import { motion } from 'framer-motion'
 
 import { ICommunityProgram } from '@/types/community'
+import CountdownTimer from '@/components/core/countdown-timer'
 
 const statusLabels: Record<ICommunityProgram['status'], string> = {
   active: 'Sedang Berjalan',
@@ -43,6 +44,11 @@ type Props = {
 
 export default function ProgramDetailContent({ program }: Props) {
   const theme = useTheme()
+  const [isExpired, setIsExpired] = useState(false)
+
+  const isRegistrationClosed = program.registrationDeadline 
+    ? new Date(program.registrationDeadline) < new Date() || isExpired
+    : false
 
   return (
     <Box
@@ -309,11 +315,55 @@ export default function ProgramDetailContent({ program }: Props) {
 
                   <Divider sx={{ mb: 3 }} />
 
+                  {/* Countdown Timer */}
+                  {program.registrationDeadline && (
+                    <Box
+                      sx={{
+                        mb: 3,
+                        p: 3,
+                        borderRadius: 2,
+                        textAlign: 'center',
+                        backgroundColor: theme.palette.mode === 'dark' 
+                          ? 'rgba(152, 15, 90, 0.1)' 
+                          : 'rgba(152, 15, 90, 0.05)',
+                        border: '1px dashed',
+                        borderColor: isRegistrationClosed ? 'text.disabled' : 'primary.main',
+                      }}
+                    >
+                      <Typography
+                        variant='caption'
+                        sx={{
+                          display: 'block',
+                          mb: 2,
+                          fontWeight: 600,
+                          color: isRegistrationClosed ? 'text.disabled' : 'primary.main',
+                          textTransform: 'uppercase',
+                          letterSpacing: 0.5,
+                        }}
+                      >
+                        {isRegistrationClosed ? '🔒 Pendaftaran Ditutup' : '⏰ Batas Pendaftaran'}
+                      </Typography>
+                      {!isRegistrationClosed && (
+                        <CountdownTimer 
+                          deadline={program.registrationDeadline} 
+                          onExpired={() => setIsExpired(true)}
+                          size='large'
+                        />
+                      )}
+                      {isRegistrationClosed && (
+                        <Typography variant='body2' color='text.secondary'>
+                          Pendaftaran untuk program ini telah ditutup
+                        </Typography>
+                      )}
+                    </Box>
+                  )}
+
                   {/* CTA Buttons */}
                   <Button
                     variant='contained'
                     fullWidth
                     size='large'
+                    disabled={isRegistrationClosed}
                     sx={{
                       mb: 2,
                       py: 1.5,
@@ -333,7 +383,7 @@ export default function ProgramDetailContent({ program }: Props) {
                       },
                     }}
                   >
-                    Daftar Sekarang
+                    {isRegistrationClosed ? 'Pendaftaran Ditutup' : 'Daftar Sekarang'}
                   </Button>
 
                   <Button

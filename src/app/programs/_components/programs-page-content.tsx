@@ -17,6 +17,7 @@ import { motion } from 'framer-motion'
 
 import { communityPrograms } from '@/constants/community'
 import { ICommunityProgram } from '@/types/community'
+import CountdownTimer from '@/components/core/countdown-timer'
 
 type CategoryFilter = 'all' | ICommunityProgram['category']
 
@@ -43,6 +44,12 @@ const statusColors: Record<ICommunityProgram['status'], 'success' | 'warning' | 
 
 const ProgramCard = ({ program }: { program: ICommunityProgram }) => {
   const theme = useTheme()
+  const [isExpired, setIsExpired] = useState(false)
+
+  // Check if registration is closed
+  const isRegistrationClosed = program.registrationDeadline 
+    ? new Date(program.registrationDeadline) < new Date() || isExpired
+    : false
 
   return (
     <motion.div
@@ -51,8 +58,8 @@ const ProgramCard = ({ program }: { program: ICommunityProgram }) => {
       transition={{ duration: 0.4 }}
     >
       <Card
-        component="a"
-        href={`/programs/${program.slug}`}
+        component={isRegistrationClosed ? 'div' : 'a'}
+        href={isRegistrationClosed ? undefined : `/programs/${program.slug}`}
         sx={{
           height: '100%',
           display: 'flex',
@@ -62,13 +69,17 @@ const ProgramCard = ({ program }: { program: ICommunityProgram }) => {
           border: '1px solid',
           borderColor: 'divider',
           textDecoration: 'none',
-          cursor: 'pointer',
-          '&:hover': {
-            transform: 'translateY(-8px)',
-            boxShadow: theme.palette.mode === 'dark' 
-              ? '0 12px 40px rgba(152, 15, 90, 0.25)'
-              : '0 12px 40px rgba(152, 15, 90, 0.15)',
-          },
+          cursor: isRegistrationClosed ? 'not-allowed' : 'pointer',
+          opacity: isRegistrationClosed ? 0.6 : 1,
+          position: 'relative',
+          ...(!isRegistrationClosed && {
+            '&:hover': {
+              transform: 'translateY(-8px)',
+              boxShadow: theme.palette.mode === 'dark' 
+                ? '0 12px 40px rgba(152, 15, 90, 0.25)'
+                : '0 12px 40px rgba(152, 15, 90, 0.15)',
+            },
+          }),
         }}
       >
         <Box
@@ -138,6 +149,41 @@ const ProgramCard = ({ program }: { program: ICommunityProgram }) => {
           >
             {program.description}
           </Typography>
+
+          {/* Countdown Timer */}
+          {program.registrationDeadline && !isRegistrationClosed && (
+            <Box
+              sx={{
+                mb: 2,
+                p: 2,
+                borderRadius: 2,
+                backgroundColor: theme.palette.mode === 'dark' 
+                  ? 'rgba(152, 15, 90, 0.1)' 
+                  : 'rgba(152, 15, 90, 0.05)',
+                border: '1px dashed',
+                borderColor: 'primary.main',
+              }}
+            >
+              <Typography
+                variant='caption'
+                sx={{
+                  display: 'block',
+                  mb: 1,
+                  fontWeight: 600,
+                  color: 'primary.main',
+                  textTransform: 'uppercase',
+                  letterSpacing: 0.5,
+                }}
+              >
+                ⏰ Batas Pendaftaran
+              </Typography>
+              <CountdownTimer 
+                deadline={program.registrationDeadline} 
+                onExpired={() => setIsExpired(true)}
+                size='small'
+              />
+            </Box>
+          )}
 
           <Box
             sx={{

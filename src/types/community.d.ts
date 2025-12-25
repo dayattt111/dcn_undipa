@@ -35,6 +35,7 @@ export interface ICommunityProgram {
   participants?: number
   startDate?: string
   endDate?: string
+  registrationDeadline?: string // ISO date string for countdown
   category: 'bootcamp' | 'study-group' | 'event' | 'workshop' | 'competition'
 }
 

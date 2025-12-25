@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 
 // components
 import Image from 'next/image'
@@ -8,6 +8,7 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
+import CountdownTimer from '@/components/core/countdown-timer'
 
 // hooks
 import { useTheme } from '@mui/material/styles'
@@ -25,13 +26,19 @@ type ProgramItemProps = {
   item: ICommunityProgram
 }
 const HomeProgramItem = ({ item }: ProgramItemProps) => {
+  const [isExpired, setIsExpired] = useState(false)
+
+  const isRegistrationClosed = item.registrationDeadline 
+    ? new Date(item.registrationDeadline) < new Date() || isExpired
+    : false
+
   return (
     <Grid size={{ xs: 12, md: 6, lg: 4 }}>
       <Box
-        component='a'
-        href={`/programs/${item.slug}`}
+        component={isRegistrationClosed ? 'div' : 'a'}
+        href={isRegistrationClosed ? undefined : `/programs/${item.slug}`}
         sx={{
-          cursor: 'pointer',
+          cursor: isRegistrationClosed ? 'not-allowed' : 'pointer',
           borderRadius: 4,
           px: 5,
           py: 4,
@@ -44,14 +51,17 @@ const HomeProgramItem = ({ item }: ProgramItemProps) => {
           backgroundColor: 'background.paper',
           textDecoration: 'none',
           display: 'block',
-          '&:hover': {
-            boxShadow: 2,
-            transform: 'translateY(-4px)',
+          opacity: isRegistrationClosed ? 0.6 : 1,
+          ...(!isRegistrationClosed && {
+            '&:hover': {
+              boxShadow: 2,
+              transform: 'translateY(-4px)',
 
-            '& button': {
-              opacity: 1,
+              '& button': {
+                opacity: 1,
+              },
             },
-          },
+          }),
         }}
       >
         <Box
@@ -86,6 +96,31 @@ const HomeProgramItem = ({ item }: ProgramItemProps) => {
             {item.description}
           </Typography>
         </Box>
+
+        {/* Countdown Timer */}
+        {item.registrationDeadline && !isRegistrationClosed && (
+          <Box sx={{ mt: 2, pt: 2, borderTop: '1px dashed rgba(255,255,255,0.2)' }}>
+            <Typography
+              variant='caption'
+              sx={{
+                display: 'block',
+                mb: 1,
+                fontWeight: 600,
+                color: '#fbfbfb',
+                textTransform: 'uppercase',
+                letterSpacing: 0.5,
+                fontSize: 10,
+              }}
+            >
+              ⏰ Batas Pendaftaran
+            </Typography>
+            <CountdownTimer 
+              deadline={item.registrationDeadline} 
+              onExpired={() => setIsExpired(true)}
+              size='small'
+            />
+          </Box>
+        )}
       </Box>
     </Grid>
   )

@@ -126,6 +126,7 @@ export const communityPrograms: ICommunityProgram[] = [
     participants: 35,
     category: 'bootcamp',
     startDate: '2025-01-15',
+    registrationDeadline: '2025-01-08', // 7 hari sebelum mulai
   },
   {
     id: 2,
@@ -137,6 +138,7 @@ export const communityPrograms: ICommunityProgram[] = [
     status: 'active',
     participants: 28,
     category: 'study-group',
+    registrationDeadline: '2026-01-01', // Masih buka
   },
   {
     id: 3,
@@ -149,6 +151,7 @@ export const communityPrograms: ICommunityProgram[] = [
     participants: 20,
     category: 'workshop',
     startDate: '2025-02-01',
+    registrationDeadline: '2025-01-25', // 7 hari sebelum mulai
   },
   {
     id: 4,
@@ -160,6 +163,7 @@ export const communityPrograms: ICommunityProgram[] = [
     status: 'upcoming',
     category: 'event',
     startDate: '2025-03-20',
+    registrationDeadline: '2025-03-13', // 7 hari sebelum mulai
   },
   {
     id: 5,
@@ -171,6 +175,7 @@ export const communityPrograms: ICommunityProgram[] = [
     status: 'active',
     participants: 22,
     category: 'study-group',
+    registrationDeadline: '2026-02-01', // Masih buka
   },
   {
     id: 6,
@@ -182,6 +187,7 @@ export const communityPrograms: ICommunityProgram[] = [
     status: 'upcoming',
     category: 'competition',
     startDate: '2025-04-10',
+    registrationDeadline: '2025-04-03', // 7 hari sebelum mulai
   },
 ]
 
