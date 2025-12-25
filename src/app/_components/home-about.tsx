@@ -23,27 +23,27 @@ interface Data {
 export const data: Data[] = [
   {
     id: 1,
-    title: 'Digital Marketing',
+    title: 'Bootcamp',
     icon: null,
-    color: '#ff3700',
+    color: '#2196F3',
   },
   {
     id: 2,
-    title: 'UI/UX Design',
+    title: 'Study Group',
     icon: null,
-    color: '#ff9e1d',
+    color: '#4CAF50',
   },
   {
     id: 3,
-    title: 'Development',
+    title: 'Event & Workshop',
     icon: null,
-    color: '#3397ff',
+    color: '#FF9800',
   },
   {
-    id: 3,
-    title: 'AI & Machine Learning',
+    id: 4,
+    title: 'Mentoring',
     icon: null,
-    color: '#5cb460',
+    color: '#9C27B0',
   },
 ]
 
@@ -119,13 +119,13 @@ const HomeAbout = () => {
         <Grid container spacing={8}>
           <Grid size={{ xs: 12, md: 7 }} sx={{ pr: 6 }}>
             <Box sx={{ position: 'relative', width: { xs: '100%', md: 400 } }}>
-              <SectionTitle>ABOUT US ?</SectionTitle>
+              <SectionTitle>TENTANG KAMI</SectionTitle>
               <Typography
-                variant='h1'
+                variant='h2'
                 component='h2'
-                sx={{ mb: 3, fontWeight: '700' }}
+                sx={{ mb: 3, fontWeight: '700', fontSize: { xs: 28, md: 36 } }}
               >
-                Who Are We?
+                Dicoding Community Network UNDIPA
               </Typography>
             </Box>
             <Box sx={{ position: 'relative', zIndex: 2 }}>
@@ -137,21 +137,44 @@ const HomeAbout = () => {
                   mb: 2,
                 }}
               >
-                A company that transforms ideas into beautiful things.
+                Komunitas developer yang belajar dan berkembang bersama.
+              </Typography>
+              <Typography
+                sx={{
+                  color: 'text.secondary',
+                  fontSize: { xs: 16, md: 18 },
+                  mb: 3,
+                  lineHeight: 1.7,
+                }}
+              >
+                DCN UNDIPA adalah komunitas developer di Universitas Dipa Makassar 
+                yang berkolaborasi dengan <strong>Dicoding Indonesia</strong> untuk 
+                memfasilitasi pembelajaran dan pengembangan skill programming.
               </Typography>
               <Typography
                 sx={{
                   color: 'text.secondary',
                   fontSize: { xs: 16, md: 18 },
                   mb: 4,
-                  lineHeight: 1.6,
+                  lineHeight: 1.7,
                 }}
               >
-                We are a digital and marketing agency that believes in the power
-                of strategy and creative ideas.
+                Melalui berbagai program seperti bootcamp, study group, dan event, 
+                kami membantu anggota mencapai milestone dan membangun portofolio profesional.
               </Typography>
             </Box>
             <Box>
+              <Typography
+                sx={{
+                  fontSize: 14,
+                  fontWeight: 600,
+                  mb: 2,
+                  textTransform: 'uppercase',
+                  color: 'text.secondary',
+                }}
+              >
+                Program Unggulan:
+              </Typography>
               <Grid
                 container
                 spacing={1}

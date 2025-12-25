@@ -33,8 +33,61 @@ const plugJakartaSans = Plus_Jakarta_Sans({
 })
 
 export const metadata: Metadata = {
-  title: AppConfig.appName,
+  metadataBase: new URL(AppConfig.siteUrl),
+  title: {
+    default: AppConfig.appName,
+    template: `%s | ${AppConfig.appName}`,
+  },
   description: AppConfig.appDescription,
+  keywords: AppConfig.keywords,
+  authors: [{ name: AppConfig.appName }],
+  creator: AppConfig.appName,
+  publisher: AppConfig.appName,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'id_ID',
+    url: AppConfig.siteUrl,
+    title: AppConfig.appName,
+    description: AppConfig.appDescription,
+    siteName: AppConfig.appName,
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: `${AppConfig.appName} - ${AppConfig.appSlogan}`,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: AppConfig.appName,
+    description: AppConfig.appDescription,
+    images: ['/twitter-image.png'],
+    creator: '@dcn_undipa',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/site.webmanifest',
 }
 
 export default function RootLayout({
@@ -42,8 +95,51 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>): JSX.Element {
+  // JSON-LD Structured Data for SEO
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: AppConfig.appName,
+    description: AppConfig.appDescription,
+    url: AppConfig.siteUrl,
+    logo: `${AppConfig.siteUrl}/logo.png`,
+    sameAs: [
+      AppConfig.socialLinks.instagram,
+      AppConfig.socialLinks.github,
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      email: AppConfig.socialLinks.email,
+      contactType: 'General Inquiry',
+    },
+  }
+
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: AppConfig.appName,
+    url: AppConfig.siteUrl,
+    description: AppConfig.appDescription,
+    inLanguage: 'id-ID',
+  }
+
   return (
-    <html lang='en'>
+    <html lang='id'>
+      <head>
+        {/* JSON-LD Structured Data */}
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
+      </head>
       <body className={plugJakartaSans.variable}>
         <AppRouterCacheProvider options={{ key: 'css' }}>
           <AppContextProvider>

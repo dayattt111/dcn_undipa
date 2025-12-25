@@ -24,13 +24,11 @@ const HomeHeroContent = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const SERVICES_TEXTS = [
-    'Digital Marketing',
-    'UI/UX Design',
-    'Web & Mobile App Development',
-    'Cloud Solutions',
-    'Data & Analytics',
-    'AI & Machine Learning',
-    'E-Commerce Solutions',
+    'Belajar Bersama 📚',
+    'Berkembang Bersama 🚀',
+    'Raih Milestone Bersama 🏆',
+    'Bangun Karya Nyata 💻',
+    'Komunitas Developer Profesional 👥',
   ]
 
   useEffect(() => {
@@ -118,35 +116,150 @@ const HomeHeroContent = () => {
         </Stack>
         <Box sx={{ textAlign: 'center' }}>
           <Typography
-            component='h2'
+            component='h1'
             sx={{
-              mb: 4,
-              fontSize: { xs: 32, md: 40, lg: 52 },
-              lineHeight: 1.5,
+              mb: 3,
+              fontSize: { xs: 32, md: 44, lg: 56 },
+              lineHeight: 1.3,
               fontWeight: '800',
             }}
           >
-            We are Global Digital Brand
+            Dicoding Community Network
             <br />
-            Tech Agency
+            UNDIPA
           </Typography>
           <Typography
+            component='p'
             sx={{
-              mb: 4,
+              mb: 5,
               color: 'text.secondary',
               fontWeight: 500,
-              lineHeight: 2,
+              lineHeight: 1.8,
               fontSize: {
-                xs: 14,
-                md: 17,
+                xs: 15,
+                md: 18,
               },
+              maxWidth: '680px',
+              mx: 'auto',
             }}
           >
-            A Digital Modern Agency specializing in <strong>Design </strong>,
-            <strong>Development </strong>, <strong>Branding </strong>,
+            Komunitas developer <strong>UNDIPA</strong> yang belajar dan berkembang bersama melalui{' '}
+            <strong>program Dicoding</strong>.
             <br />
-            and <strong>Online Marketing </strong> to elevate your business.
+            Akses bootcamp, study group, dan raih milestone bersama ratusan developer lainnya.
           </Typography>
+          
+          {/* CTA Buttons */}
+          <Box
+            sx={{
+              display: 'flex',
+              gap: 2,
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+              mb: 2,
+            }}
+          >
+            <Box
+              component='a'
+              href='#home-contact'
+              sx={{
+                px: 4,
+                py: 1.5,
+                backgroundColor: 'primary.main',
+                color: 'primary.contrastText',
+                borderRadius: 2,
+                fontWeight: 600,
+                fontSize: 15,
+                textDecoration: 'none',
+                transition: 'all 0.3s',
+                '&:hover': {
+                  backgroundColor: 'primary.dark',
+                  transform: 'translateY(-2px)',
+                  boxShadow: 3,
+                },
+              }}
+            >
+              Gabung Komunitas
+            </Box>
+            <Box
+              component='a'
+              href='/leaderboard'
+              sx={{
+                px: 4,
+                py: 1.5,
+                border: 2,
+                borderColor: 'primary.main',
+                color: 'primary.main',
+                borderRadius: 2,
+                fontWeight: 600,
+                fontSize: 15,
+                textDecoration: 'none',
+                transition: 'all 0.3s',
+                '&:hover': {
+                  backgroundColor: 'primary.main',
+                  color: 'primary.contrastText',
+                  transform: 'translateY(-2px)',
+                },
+              }}
+            >
+              Lihat Leaderboard
+            </Box>
+          </Box>
+          
+          {/* Quick Stats */}
+          <Box
+            sx={{
+              display: 'flex',
+              gap: { xs: 2, md: 4 },
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+              mt: 5,
+              opacity: 0.85,
+            }}
+          >
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography
+                sx={{
+                  fontSize: { xs: 24, md: 32 },
+                  fontWeight: 800,
+                  color: 'primary.main',
+                }}
+              >
+                150+
+              </Typography>
+              <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>
+                Members
+              </Typography>
+            </Box>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography
+                sx={{
+                  fontSize: { xs: 24, md: 32 },
+                  fontWeight: 800,
+                  color: 'primary.main',
+                }}
+              >
+                520+
+              </Typography>
+              <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>
+                Kelas Selesai
+              </Typography>
+            </Box>
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography
+                sx={{
+                  fontSize: { xs: 24, md: 32 },
+                  fontWeight: 800,
+                  color: 'primary.main',
+                }}
+              >
+                24+
+              </Typography>
+              <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>
+                Event
+              </Typography>
+            </Box>
+          </Box>
         </Box>
         <motion.div
           initial={{

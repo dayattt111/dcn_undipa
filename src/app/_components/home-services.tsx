@@ -13,15 +13,15 @@ import Typography from '@mui/material/Typography'
 import { useTheme } from '@mui/material/styles'
 
 // constants
-import { services } from '@/constants/service'
+import { communityPrograms } from '@/constants/community'
 
 // configs
 import { AppConfig } from '@/configs'
 
-type ServiceItemProps = {
-  item: IService
+type ProgramItemProps = {
+  item: ICommunityProgram
 }
-const HomeServiceItem = ({ item }: ServiceItemProps) => {
+const HomeProgramItem = ({ item }: ProgramItemProps) => {
   const onClick = (slug: string) => {
     console.log('slug->', slug)
   }
@@ -89,11 +89,11 @@ const HomeServiceItem = ({ item }: ServiceItemProps) => {
   )
 }
 
-const HomeServices = () => {
+const HomePrograms = () => {
   const { palette } = useTheme()
   return (
     <Box
-      id='home-service'
+      id='home-programs'
       component='section'
       sx={{
         width: '100%',
@@ -110,7 +110,7 @@ const HomeServices = () => {
             textAlign: { xs: 'center', md: 'left' },
             width: {
               xs: '100%',
-              md: '70%',
+              md: '80%',
             },
           }}
         >
@@ -132,19 +132,20 @@ const HomeServices = () => {
               }}
               variant='h5'
             >
-              OUR SERVICES
+              PROGRAM KOMUNITAS
             </Typography>
           </Box>
           <Typography
-            variant='h1'
+            component='h2'
+            variant='h2'
             sx={{
               mb: 2,
               lineHeight: 1.4,
               fontWeight: '800',
-              textTransform: 'capitalize',
+              fontSize: { xs: 28, md: 40 },
             }}
           >
-            What do you need to keep your business growing?
+            Program Belajar & Pengembangan
           </Typography>
           <Typography
             sx={{
@@ -152,12 +153,13 @@ const HomeServices = () => {
               mb: 1,
               fontSize: {
                 xs: 16,
-                md: 22,
+                md: 20,
               },
+              lineHeight: 1.6,
             }}
           >
-            We provides a wide range of services aimed at helping Businesses,
-            Organizations.
+            Ikuti berbagai program yang dirancang untuk mengembangkan skill programming 
+            dan membangun portofolio profesional.
           </Typography>
         </Box>
       </Container>
@@ -228,15 +230,14 @@ const HomeServices = () => {
         </Box>
 
         <Grid container spacing={3}>
-          {services.map((item) => (
-            <HomeServiceItem item={item} key={item.title} />
+          {communityPrograms.map((item) => (
+            <HomeProgramItem item={item} key={item.id} />
           ))}
         </Grid>
 
-        <Box sx={{ textAlign: 'center', mt: 5, color: '#fbfbfb' }}>
-          <Typography>
-            Since its establishment in 2016, {AppConfig.appName} has focused on
-            digital marketing
+        <Box sx={{ textAlign: 'center', mt: 6, color: '#fbfbfb' }}>
+          <Typography sx={{ fontSize: { xs: 14, md: 16 } }}>
+            Bergabung dengan {AppConfig.appName} dan kembangkan skill bersama ratusan developer lainnya
           </Typography>
         </Box>
       </Container>
@@ -244,4 +245,4 @@ const HomeServices = () => {
   )
 }
 
-export default HomeServices
+export default HomePrograms
