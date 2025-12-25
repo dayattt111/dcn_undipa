@@ -23,8 +23,8 @@ export const companyMenus: IMenu[] = [
     ),
   },
   {
-    label: 'Services',
-    path: '/services',
+    label: 'Program',
+    path: '/programs',
     icon: (
       <Box component={LayersOutlinedIcon} sx={{ width: 20, height: 'auto' }} />
     ),

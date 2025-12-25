@@ -51,6 +51,8 @@ const ProgramCard = ({ program }: { program: ICommunityProgram }) => {
       transition={{ duration: 0.4 }}
     >
       <Card
+        component="a"
+        href={`/programs/${program.slug}`}
         sx={{
           height: '100%',
           display: 'flex',
@@ -59,6 +61,8 @@ const ProgramCard = ({ program }: { program: ICommunityProgram }) => {
           transition: 'all 0.3s ease',
           border: '1px solid',
           borderColor: 'divider',
+          textDecoration: 'none',
+          cursor: 'pointer',
           '&:hover': {
             transform: 'translateY(-8px)',
             boxShadow: theme.palette.mode === 'dark' 
@@ -164,35 +168,13 @@ const ProgramCard = ({ program }: { program: ICommunityProgram }) => {
               </Typography>
             )}
           </Box>
-
-          <Button
-            variant='contained'
-            fullWidth
-            sx={{
-              mt: 2,
-              py: 1.5,
-              borderRadius: 2,
-              textTransform: 'none',
-              fontWeight: 600,
-              background: theme.palette.mode === 'dark'
-                ? 'linear-gradient(135deg, #980f5a 0%, #c41470 100%)'
-                : 'linear-gradient(135deg, #980f5a 0%, #d01678 100%)',
-              '&:hover': {
-                background: theme.palette.mode === 'dark'
-                  ? 'linear-gradient(135deg, #7a0c48 0%, #a00f5a 100%)'
-                  : 'linear-gradient(135deg, #7a0c48 0%, #b01260 100%)',
-              },
-            }}
-          >
-            Daftar Sekarang
-          </Button>
         </CardContent>
       </Card>
     </motion.div>
   )
 }
 
-export default function ServicesPageContent() {
+export default function ProgramsPageContent() {
   const theme = useTheme()
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>('all')
 
@@ -260,7 +242,7 @@ export default function ServicesPageContent() {
                 backgroundClip: 'text',
               }}
             >
-              Program & Layanan
+              Program Komunitas
             </Typography>
           </motion.div>
 
@@ -322,7 +304,7 @@ export default function ServicesPageContent() {
         {/* Programs Grid */}
         <Grid container spacing={3}>
           {filteredPrograms.map((program) => (
-            <Grid item xs={12} sm={6} md={4} key={program.id}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={program.id}>
               <ProgramCard program={program} />
             </Grid>
           ))}

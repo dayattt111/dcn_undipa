@@ -12,6 +12,9 @@ import Typography from '@mui/material/Typography'
 // hooks
 import { useTheme } from '@mui/material/styles'
 
+// types
+import { ICommunityProgram } from '@/types/community'
+
 // constants
 import { communityPrograms } from '@/constants/community'
 
@@ -22,13 +25,11 @@ type ProgramItemProps = {
   item: ICommunityProgram
 }
 const HomeProgramItem = ({ item }: ProgramItemProps) => {
-  const onClick = (slug: string) => {
-    console.log('slug->', slug)
-  }
-
   return (
     <Grid size={{ xs: 12, md: 6, lg: 4 }}>
       <Box
+        component='a'
+        href={`/programs/${item.slug}`}
         sx={{
           cursor: 'pointer',
           borderRadius: 4,
@@ -41,6 +42,8 @@ const HomeProgramItem = ({ item }: ProgramItemProps) => {
               duration: 450,
             }),
           backgroundColor: 'background.paper',
+          textDecoration: 'none',
+          display: 'block',
           '&:hover': {
             boxShadow: 2,
             transform: 'translateY(-4px)',
@@ -50,7 +53,6 @@ const HomeProgramItem = ({ item }: ProgramItemProps) => {
             },
           },
         }}
-        onClick={() => onClick(item.slug)}
       >
         <Box
           sx={{

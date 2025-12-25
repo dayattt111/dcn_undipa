@@ -20,7 +20,7 @@ const FooterServicesLink = () => {
         <MuiLink
           key={String(index)}
           component={RouterLink}
-          href={`/services/${item.slug}`}
+          href={`/programs/${item.slug}`}
           target='_blank'
           sx={{
             display: 'flex',

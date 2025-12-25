@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { AppConfig } from '@/configs'
-import ServicesPageContent from './_components/services-page-content'
+import ProgramsPageContent from './_components/programs-page-content'
 
 export const metadata: Metadata = {
-  title: 'Program & Layanan',
+  title: 'Program Komunitas',
   description:
     'Jelajahi berbagai program belajar, workshop, bootcamp, dan event yang disediakan oleh Dicoding Community Network UNDIPA untuk mengembangkan skill programming Anda.',
   keywords: [
@@ -15,22 +15,22 @@ export const metadata: Metadata = {
     'belajar coding',
   ],
   openGraph: {
-    title: `Program & Layanan - ${AppConfig.appName}`,
+    title: `Program Komunitas - ${AppConfig.appName}`,
     description:
       'Jelajahi berbagai program belajar, workshop, bootcamp, dan event yang disediakan oleh DCN UNDIPA untuk mengembangkan skill programming Anda.',
-    url: `${AppConfig.baseUrl}/services`,
+    url: `${AppConfig.siteUrl}/programs`,
     siteName: AppConfig.appName,
     locale: 'id_ID',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: `Program & Layanan - ${AppConfig.appName}`,
+    title: `Program Komunitas - ${AppConfig.appName}`,
     description:
       'Jelajahi berbagai program belajar, workshop, bootcamp, dan event yang disediakan oleh DCN UNDIPA.',
   },
 }
 
-export default function ServicesPage() {
-  return <ServicesPageContent />
+export default function ProgramsPage() {
+  return <ProgramsPageContent />
 }

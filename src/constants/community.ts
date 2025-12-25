@@ -121,7 +121,7 @@ export const communityPrograms: ICommunityProgram[] = [
     slug: 'bootcamp-fullstack-web',
     description:
       'Program intensive belajar full-stack development dari fundamental hingga deployment dengan mentor berpengalaman.',
-    image: '/icons/bootcamp.png',
+    image: '/icons/content-strategy.png',
     status: 'active',
     participants: 35,
     category: 'bootcamp',
@@ -156,7 +156,7 @@ export const communityPrograms: ICommunityProgram[] = [
     slug: 'event-devfest-2025',
     description:
       'Acara tahunan developer festival dengan tech talk, workshop, dan networking session bersama expert.',
-    image: '/icons/content-strategy.png',
+    image: '/icons/pantone.png',
     status: 'upcoming',
     category: 'event',
     startDate: '2025-03-20',
