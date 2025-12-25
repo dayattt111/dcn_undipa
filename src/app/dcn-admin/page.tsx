@@ -7,13 +7,14 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import Skeleton from '@mui/material/Skeleton'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '@/lib/firebase/config'
+
 // Emoji icons
 const SchoolIcon = () => <span style={{ fontSize: '1.5rem' }}>📚</span>
 const WorkIcon = () => <span style={{ fontSize: '1.5rem' }}>💼</span>
 const FolderIcon = () => <span style={{ fontSize: '1.5rem' }}>📁</span>
 const PeopleIcon = () => <span style={{ fontSize: '1.5rem' }}>👥</span>
-import { collection, getDocs } from 'firebase/firestore'
-import { db } from '@/lib/firebase/config'
 
 interface StatCardProps {
   title: string

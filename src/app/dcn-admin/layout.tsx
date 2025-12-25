@@ -20,15 +20,15 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles'
 
 // Emoji icons as components
-const DashboardIcon = () => <Box component="span">📊</Box>
-const SchoolIcon = () => <Box component="span">📚</Box>
-const WorkIcon = () => <Box component="span">💼</Box>
-const FolderIcon = () => <Box component="span">📁</Box>
-const LeaderboardIcon = () => <Box component="span">🏆</Box>
-const SettingsIcon = () => <Box component="span">⚙️</Box>
-const MenuIcon = () => <Box component="span">☰</Box>
-const LogoutIcon = () => <Box component="span">🚪</Box>
-const HomeIcon = () => <Box component="span">🏠</Box>
+const DashboardIcon = () => <span>📊</span>
+const SchoolIcon = () => <span>📚</span>
+const WorkIcon = () => <span>💼</span>
+const FolderIcon = () => <span>📁</span>
+const LeaderboardIcon = () => <span>🏆</span>
+const SettingsIcon = () => <span>⚙️</span>
+const MenuIcon = () => <span>☰</span>
+const LogoutIcon = () => <span>🚪</span>
+const HomeIcon = () => <span>🏠</span>
 
 const DRAWER_WIDTH = 260
 

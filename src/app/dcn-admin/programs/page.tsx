@@ -22,10 +22,6 @@ import MenuItem from '@mui/material/MenuItem'
 import Alert from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
 import Skeleton from '@mui/material/Skeleton'
-// Emoji icons
-const AddIcon = () => <span>➕</span>
-const EditIcon = () => <span>✏️</span>
-const DeleteIcon = () => <span>🗑️</span>
 import {
   collection,
   getDocs,
@@ -39,6 +35,11 @@ import {
 } from 'firebase/firestore'
 import { db } from '@/lib/firebase/config'
 import { ICommunityProgram } from '@/types/community'
+
+// Emoji icons
+const AddIcon = () => <span>➕</span>
+const EditIcon = () => <span>✏️</span>
+const DeleteIcon = () => <span>🗑️</span>
 
 type ProgramWithDocId = ICommunityProgram & { docId: string }
 

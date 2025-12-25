@@ -13,8 +13,8 @@ import IconButton from '@mui/material/IconButton'
 import CircularProgress from '@mui/material/CircularProgress'
 
 // Emoji icons
-const Visibility = () => <Box component="span">👁️</Box>
-const VisibilityOff = () => <Box component="span">🙈</Box>
+const Visibility = () => <span>👁️</span>
+const VisibilityOff = () => <span>🙈</span>
 const LockIcon = () => <span style={{ fontSize: 32 }}>🔐</span>
 
 export default function AdminLoginPage() {

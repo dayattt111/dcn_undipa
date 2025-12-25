@@ -21,11 +21,6 @@ import TextField from '@mui/material/TextField'
 import Alert from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
 import Skeleton from '@mui/material/Skeleton'
-// Emoji icons
-const AddIcon = () => <span>➕</span>
-const EditIcon = () => <span>✏️</span>
-const DeleteIcon = () => <span>🗑️</span>
-const EmojiEventsIcon = () => <span style={{ fontSize: '3rem' }}>🏆</span>
 import {
   collection,
   getDocs,
@@ -38,6 +33,12 @@ import {
   orderBy,
 } from 'firebase/firestore'
 import { db } from '@/lib/firebase/config'
+
+// Emoji icons
+const AddIcon = () => <span>➕</span>
+const EditIcon = () => <span>✏️</span>
+const DeleteIcon = () => <span>🗑️</span>
+const EmojiEventsIcon = () => <span style={{ fontSize: '3rem' }}>🏆</span>
 
 interface LeaderboardUser {
   docId?: string

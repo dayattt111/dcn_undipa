@@ -11,15 +11,16 @@ import Alert from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
 import Skeleton from '@mui/material/Skeleton'
 import Grid from '@mui/material/Grid'
+import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore'
+import { db } from '@/lib/firebase/config'
+import { ICommunityStats } from '@/types/community'
+
 // Emoji icons
 const SaveIcon = () => <span>💾</span>
 const PeopleIcon = () => <span style={{ fontSize: '1.5rem' }}>👥</span>
 const SchoolIcon = () => <span style={{ fontSize: '1.5rem' }}>📚</span>
 const EventIcon = () => <span style={{ fontSize: '1.5rem' }}>📅</span>
 const TrendingUpIcon = () => <span style={{ fontSize: '1.5rem' }}>📈</span>
-import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore'
-import { db } from '@/lib/firebase/config'
-import { ICommunityStats } from '@/types/community'
 
 const STATS_DOC_ID = 'community_stats'
 

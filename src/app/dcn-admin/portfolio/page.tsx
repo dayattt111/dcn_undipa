@@ -24,10 +24,6 @@ import Snackbar from '@mui/material/Snackbar'
 import Skeleton from '@mui/material/Skeleton'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Switch from '@mui/material/Switch'
-// Emoji icons
-const AddIcon = () => <span>➕</span>
-const EditIcon = () => <span>✏️</span>
-const DeleteIcon = () => <span>🗑️</span>
 import {
   collection,
   getDocs,
@@ -41,6 +37,11 @@ import {
 } from 'firebase/firestore'
 import { db } from '@/lib/firebase/config'
 import { IPortfolioProject } from '@/types/portfolio'
+
+// Emoji icons
+const AddIcon = () => <span>➕</span>
+const EditIcon = () => <span>✏️</span>
+const DeleteIcon = () => <span>🗑️</span>
 
 type ProjectWithDocId = IPortfolioProject & { docId: string }
 
