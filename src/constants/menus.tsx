@@ -37,13 +37,6 @@ export const companyMenus: IMenu[] = [
     ),
   },
   {
-    label: 'Contact',
-    path: '/contact',
-    icon: (
-      <Box component={ContactOutlinedIcon} sx={{ width: 18, height: 'auto' }} />
-    ),
-  },
-  {
     label: 'Career',
     path: '/career',
     icon: (
