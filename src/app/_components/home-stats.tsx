@@ -85,7 +85,7 @@ const HomeStats = () => {
       sx={{
         width: '100%',
         py: { xs: 8, md: 14 },
-        backgroundColor: palette.mode === 'dark' ? 'background.default' : '#f8fafc',
+        backgroundColor: palette.mode === 'dark' ? '#4c0027' : '#fce4ec',
       }}
     >
       <Container>

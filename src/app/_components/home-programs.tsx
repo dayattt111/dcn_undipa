@@ -132,7 +132,7 @@ const HomePrograms = () => {
         width: '100%',
         pt: { xs: 8, md: 14 },
         pb: { xs: 6, md: 12 },
-        backgroundColor: palette.mode === 'dark' ? '#1a1a1a' : palette.primary.main,
+        backgroundColor: palette.mode === 'dark' ? '#6b0a3f' : '#e91e63',
       }}
     >
       <Container maxWidth='md'>

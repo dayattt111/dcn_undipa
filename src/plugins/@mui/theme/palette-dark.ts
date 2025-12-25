@@ -4,15 +4,15 @@ import { grey } from '@mui/material/colors'
 const paletteDark: PaletteOptions = {
   mode: 'dark',
   background: {
-    default: '#1a1a1a',        // Deep dark background
-    paper: '#242424',          // Slightly lighter for cards
+    default: '#2d0017',        // Deep maroon/magenta dark
+    paper: '#4c0027',          // Maroon untuk cards dengan kontras putih
   },
   text: {
-    primary: '#f5f5f5',        // Off-white for readability
-    secondary: grey[400],
-    disabled: grey[600],
+    primary: '#ffffff',        // Pure white untuk readability
+    secondary: '#f8bbd0',      // Light pink untuk secondary
+    disabled: grey[500],
   },
-  divider: alpha('#980f5a', 0.12),  // Subtle magenta divider
+  divider: alpha('#f48fb1', 0.15),  // Light pink divider
 }
 
 export default paletteDark

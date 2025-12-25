@@ -19,7 +19,7 @@ const HomeHero = () => {
       sx={{
         width: '100%',
         position: 'relative',
-        backgroundColor: palette.mode === 'dark' ? '#1a1a1a' : '#fef5f9',
+        backgroundColor: palette.mode === 'dark' ? '#2d0017' : '#f8bbd0',
         minHeight: '100vh',
         overflow: 'hidden',
       }}
