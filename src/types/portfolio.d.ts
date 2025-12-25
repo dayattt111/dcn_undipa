@@ -27,4 +27,5 @@ export interface IPortfolioProject {
   tags: string[]
   completedDate?: string
   programSource?: string // e.g., 'Bootcamp Full-Stack', 'Study Group Android'
+  featured?: boolean
 }

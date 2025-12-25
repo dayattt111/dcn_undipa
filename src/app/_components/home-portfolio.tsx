@@ -71,7 +71,7 @@ const HomePortfolio = () => {
 
         <Grid container spacing={3}>
           {featuredProjects.map((project, index) => (
-            <Grid item xs={12} md={4} key={project.id}>
+            <Grid size={{ xs: 12, md: 4 }} key={project.id}>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}

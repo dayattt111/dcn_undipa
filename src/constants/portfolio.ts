@@ -33,6 +33,7 @@ export const portfolioProjects: IPortfolioProject[] = [
     tags: ['E-Commerce', 'Full-Stack', 'Payment Integration'],
     completedDate: '2024-12-10',
     programSource: 'Bootcamp Full-Stack Web Development',
+    featured: true,
   },
   {
     id: 2,
@@ -57,6 +58,7 @@ export const portfolioProjects: IPortfolioProject[] = [
     tags: ['Health', 'Fitness', 'Machine Learning'],
     completedDate: '2024-11-28',
     programSource: 'Study Group Android Development',
+    featured: true,
   },
   {
     id: 3,
@@ -80,8 +82,7 @@ export const portfolioProjects: IPortfolioProject[] = [
     },
     tags: ['NLP', 'Sentiment Analysis', 'Deep Learning'],
     completedDate: '2024-12-05',
-    programSource: 'Workshop Machine Learning',
-  },
+    programSource: 'Workshop Machine Learning',    featured: true,  },
   {
     id: 4,
     title: 'CloudStorage - Serverless File Manager',

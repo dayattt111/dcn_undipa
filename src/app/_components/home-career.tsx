@@ -98,7 +98,7 @@ const HomeCareer = () => {
 
         <Grid container spacing={3}>
           {featuredJobs.map((job, index) => (
-            <Grid item xs={12} md={4} key={job.id}>
+            <Grid size={{ xs: 12, md: 4 }} key={job.id}>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}

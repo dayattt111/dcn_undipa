@@ -59,7 +59,7 @@ const HomeCTA = () => {
             }}
           >
             <Grid container spacing={4} alignItems="center" sx={{ position: 'relative', zIndex: 1 }}>
-              <Grid item xs={12} md={8}>
+              <Grid size={{ xs: 12, md: 8 }}>
                 <Typography
                   variant="h3"
                   sx={{
@@ -84,7 +84,7 @@ const HomeCTA = () => {
                   workshop, dan komunitas developer yang supportif.
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={4}>
+              <Grid size={{ xs: 12, md: 4 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                   <Button
                     component={Link}
@@ -156,7 +156,7 @@ const HomeCTA = () => {
               { number: '80+', label: 'Project Selesai' },
               { number: '20+', label: 'Partner' },
             ].map((stat, index) => (
-              <Grid item xs={6} sm={3} key={index}>
+              <Grid size={{ xs: 6, sm: 3 }} key={index}>
                 <Box sx={{ textAlign: 'center' }}>
                   <Typography
                     variant="h3"
