@@ -26,6 +26,8 @@ interface StatItemProps {
 }
 
 const StatItem = ({ value, label, suffix = '+', delay = 0 }: StatItemProps) => {
+  const { palette } = useTheme()
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -38,11 +40,18 @@ const StatItem = ({ value, label, suffix = '+', delay = 0 }: StatItemProps) => {
           textAlign: 'center',
           p: 4,
           borderRadius: 3,
-          backgroundColor: 'background.paper',
+          background: palette.mode === 'dark'
+            ? 'linear-gradient(135deg, rgba(45, 0, 23, 0.8) 0%, rgba(76, 0, 39, 0.6) 100%)'
+            : 'linear-gradient(135deg, #ffffff 0%, rgba(248, 187, 208, 0.15) 100%)',
+          backdropFilter: 'blur(10px)',
+          border: `1px solid ${palette.mode === 'dark' ? 'rgba(152, 15, 90, 0.2)' : 'rgba(152, 15, 90, 0.08)'}`,
           transition: 'all 0.3s',
           '&:hover': {
             transform: 'translateY(-8px)',
-            boxShadow: 4,
+            boxShadow: palette.mode === 'dark'
+              ? '0 12px 40px rgba(152, 15, 90, 0.4)'
+              : '0 12px 40px rgba(152, 15, 90, 0.15)',
+            borderColor: palette.mode === 'dark' ? 'rgba(152, 15, 90, 0.5)' : 'rgba(152, 15, 90, 0.2)',
           },
         }}
       >
@@ -85,7 +94,22 @@ const HomeStats = () => {
       sx={{
         width: '100%',
         py: { xs: 8, md: 14 },
-        backgroundColor: palette.mode === 'dark' ? '#4c0027' : '#fce4ec',
+        position: 'relative',
+        background: palette.mode === 'dark' 
+          ? 'linear-gradient(180deg, #1a0010 0%, #2d0017 50%, #1a0010 100%)'
+          : 'linear-gradient(180deg, #ffffff 0%, #fff5f8 30%, #fce4ec 70%, #fff5f8 100%)',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: '10%',
+          width: '80%',
+          height: '100%',
+          background: palette.mode === 'dark'
+            ? 'radial-gradient(ellipse at center, rgba(152, 15, 90, 0.15) 0%, transparent 70%)'
+            : 'radial-gradient(ellipse at center, rgba(248, 187, 208, 0.4) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        },
       }}
     >
       <Container>

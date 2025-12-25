@@ -132,7 +132,37 @@ const HomePrograms = () => {
         width: '100%',
         pt: { xs: 8, md: 14 },
         pb: { xs: 6, md: 12 },
-        backgroundColor: palette.mode === 'dark' ? '#6b0a3f' : '#e91e63',
+        position: 'relative',
+        background: palette.mode === 'dark' 
+          ? 'linear-gradient(165deg, #2d0017 0%, #4c0027 25%, #6b0a3f 50%, #4c0027 75%, #2d0017 100%)'
+          : 'linear-gradient(165deg, #d81b60 0%, #e91e63 20%, #ec407a 40%, #f06292 60%, #e91e63 80%, #d81b60 100%)',
+        overflow: 'hidden',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: '-50%',
+          right: '-10%',
+          width: '60%',
+          height: '200%',
+          background: palette.mode === 'dark'
+            ? 'radial-gradient(circle, rgba(152, 15, 90, 0.3) 0%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%)',
+          transform: 'rotate(-15deg)',
+          pointerEvents: 'none',
+        },
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          bottom: '-30%',
+          left: '-10%',
+          width: '50%',
+          height: '150%',
+          background: palette.mode === 'dark'
+            ? 'radial-gradient(circle, rgba(236, 64, 122, 0.2) 0%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%)',
+          transform: 'rotate(25deg)',
+          pointerEvents: 'none',
+        },
       }}
     >
       <Container maxWidth='md'>

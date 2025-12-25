@@ -25,25 +25,25 @@ export const data: Data[] = [
     id: 1,
     title: 'Bootcamp',
     icon: null,
-    color: '#4c0027',    // Primary maroon
+    color: '#980f5a',    // Primary magenta
   },
   {
     id: 2,
     title: 'Study Group',
     icon: null,
-    color: '#980f5a',    // Secondary magenta
+    color: '#4c0027',    // Maroon
   },
   {
     id: 3,
     title: 'Event & Workshop',
     icon: null,
-    color: '#7a1845',    // Light maroon
+    color: '#ec407a',    // Light pink magenta
   },
   {
     id: 4,
     title: 'Mentoring',
     icon: null,
-    color: '#c73d7f',    // Light magenta
+    color: '#6b0a3f',    // Dark magenta
   },
 ]
 
@@ -70,7 +70,7 @@ const FeatureItem = ({ item }: ItemProps) => {
       <Box
         className='circle'
         sx={{
-          backgroundColor: item.color || 'primary.main',
+          background: `linear-gradient(135deg, ${item.color} 0%, ${item.color}dd 100%)`,
           color: 'primary.contrastText',
           width: 44,
           height: 44,
@@ -80,7 +80,12 @@ const FeatureItem = ({ item }: ItemProps) => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          transition: (theme) => theme.transitions.create(['border-radius']),
+          boxShadow: `0 4px 12px ${item.color}40`,
+          transition: (theme) => theme.transitions.create(['border-radius', 'transform', 'box-shadow']),
+          '&:hover': {
+            transform: 'scale(1.1)',
+            boxShadow: `0 6px 20px ${item.color}60`,
+          },
 
           '& svg': {
             fontSize: 22,
@@ -112,7 +117,22 @@ const HomeAbout = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'background.paper',
+        position: 'relative',
+        background: palette.mode === 'dark'
+          ? 'linear-gradient(to bottom, #1a0010 0%, #2d0017 50%, #1a0010 100%)'
+          : 'linear-gradient(to bottom, #ffffff 0%, #fff5f8 50%, #ffffff 100%)',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: '20%',
+          left: 0,
+          width: '100%',
+          height: '60%',
+          background: palette.mode === 'dark'
+            ? 'radial-gradient(ellipse at left, rgba(152, 15, 90, 0.08) 0%, transparent 60%)'
+            : 'radial-gradient(ellipse at left, rgba(248, 187, 208, 0.2) 0%, transparent 60%)',
+          pointerEvents: 'none',
+        },
       }}
     >
       <Container>
