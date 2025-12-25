@@ -1,19 +1,21 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 // components
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
+import Skeleton from '@mui/material/Skeleton'
 import { SectionTitle } from '@/components/core'
 
 // hooks
 import { useTheme } from '@mui/material/styles'
 
-// constants
-import { communityStats } from '@/constants/community'
+// firebase
+import { getStats } from '@/lib/firebase/community'
+import type { ICommunityStats } from '@/types/community'
 
 // motion
 import { motion } from 'framer-motion'
@@ -86,6 +88,22 @@ const StatItem = ({ value, label, suffix = '+', delay = 0 }: StatItemProps) => {
 
 const HomeStats = () => {
   const { palette } = useTheme()
+  const [stats, setStats] = useState<ICommunityStats | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const data = await getStats()
+        setStats(data)
+      } catch (error) {
+        console.error('Error fetching stats:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchStats()
+  }, [])
 
   return (
     <Box
@@ -140,34 +158,63 @@ const HomeStats = () => {
         </Box>
 
         <Grid container spacing={3}>
-          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-            <StatItem
-              value={communityStats.totalMembers}
-              label='Members'
-              delay={0.1}
-            />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-            <StatItem
-              value={communityStats.totalClassesCompleted}
-              label='Kelas Selesai'
-              delay={0.2}
-            />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-            <StatItem
-              value={communityStats.totalEvents}
-              label='Event'
-              delay={0.3}
-            />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-            <StatItem
-              value={communityStats.activeLearners}
-              label='Active Learners'
-              delay={0.4}
-            />
-          </Grid>
+          {loading ? (
+            // Loading skeletons
+            Array.from({ length: 4 }).map((_, index) => (
+              <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
+                <Box
+                  sx={{
+                    textAlign: 'center',
+                    p: { xs: 3, sm: 4 },
+                    borderRadius: 3,
+                    backgroundColor: 'background.paper',
+                    border: '1px solid',
+                    borderColor: 'divider',
+                  }}
+                >
+                  <Skeleton variant="text" width="60%" height={56} sx={{ mx: 'auto', mb: 1 }} />
+                  <Skeleton variant="text" width="80%" height={24} sx={{ mx: 'auto' }} />
+                </Box>
+              </Grid>
+            ))
+          ) : stats ? (
+            <>
+              <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+                <StatItem
+                  value={stats.totalMembers}
+                  label='Members'
+                  delay={0.1}
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+                <StatItem
+                  value={stats.totalClassesCompleted}
+                  label='Classes Completed'
+                  delay={0.2}
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+                <StatItem
+                  value={stats.totalEvents}
+                  label='Events'
+                  delay={0.3}
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+                <StatItem
+                  value={stats.activeLearners}
+                  label='Active Learners'
+                  delay={0.4}
+                />
+              </Grid>
+            </>
+          ) : (
+            <Grid size={{ xs: 12 }}>
+              <Typography textAlign="center" color="text.secondary">
+                Data statistik tidak tersedia
+              </Typography>
+            </Grid>
+          )}
         </Grid>
 
         {/* CTA to Leaderboard */}

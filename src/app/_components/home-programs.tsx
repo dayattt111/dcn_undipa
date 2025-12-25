@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Box from '@mui/material/Box'
@@ -8,9 +8,11 @@ import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
+import Skeleton from '@mui/material/Skeleton'
 import { useTheme } from '@mui/material/styles'
 import { motion } from 'framer-motion'
-import { communityPrograms } from '@/constants/community'
+import { getPrograms } from '@/lib/firebase/programs'
+import { ICommunityProgram } from '@/types/community'
 import { AppConfig } from '@/configs'
 
 type ProgramItemProps = {
@@ -158,6 +160,23 @@ const HomeProgramItem = ({ item, index }: ProgramItemProps) => {
 
 const HomePrograms = () => {
   const { palette } = useTheme()
+  const [programs, setPrograms] = useState<ICommunityProgram[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      try {
+        const data = await getPrograms()
+        setPrograms(data.slice(0, 3)) // Top 3 programs for homepage
+      } catch (error) {
+        console.error('Error fetching programs:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchPrograms()
+  }, [])
+
   return (
     <Box
       id='home-programs'
@@ -212,9 +231,38 @@ const HomePrograms = () => {
           </Box>
         </motion.div>
         <Grid container spacing={3}>
-          {communityPrograms.map((item, index) => (
-            <HomeProgramItem item={item} index={index} key={item.id} />
-          ))}
+          {loading ? (
+            // Loading skeletons
+            Array.from({ length: 3 }).map((_, index) => (
+              <Grid size={{ xs: 12, sm: 6, lg: 4 }} key={index}>
+                <Box
+                  sx={{
+                    p: { xs: 3, md: 4 },
+                    borderRadius: 3,
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    backgroundColor: 'background.paper',
+                  }}
+                >
+                  <Skeleton variant="rectangular" width={80} height={80} sx={{ mb: 2.5, borderRadius: 2 }} />
+                  <Skeleton variant="text" width="80%" height={32} sx={{ mb: 1 }} />
+                  <Skeleton variant="text" width="100%" />
+                  <Skeleton variant="text" width="90%" />
+                  <Skeleton variant="text" width="60%" />
+                </Box>
+              </Grid>
+            ))
+          ) : programs.length > 0 ? (
+            programs.map((item, index) => (
+              <HomeProgramItem item={item} index={index} key={item.id} />
+            ))
+          ) : (
+            <Grid size={{ xs: 12 }}>
+              <Typography textAlign="center" color="text.secondary" py={4}>
+                Belum ada program tersedia
+              </Typography>
+            </Grid>
+          )}
         </Grid>
 
         <motion.div
