@@ -163,6 +163,7 @@ const HomeHeroContent = () => {
               mb: 2,
               width: '100%',
               maxWidth: '500px',
+              mx: 'auto',
             }}
           >
             <Box
@@ -171,6 +172,7 @@ const HomeHeroContent = () => {
               sx={{
                 px: { xs: 3, md: 4 },
                 py: { xs: 1.2, md: 1.5 },
+                // textAlign: 'center',
                 backgroundColor: 'primary.main',
                 color: 'primary.contrastText',
                 borderRadius: 2,
