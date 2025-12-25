@@ -22,9 +22,9 @@ const HomeHero = () => {
         background: palette.mode === 'dark' 
           ? 'radial-gradient(ellipse at top, #4c0027 0%, #2d0017 50%, #1a0010 100%)'
           : 'radial-gradient(ellipse at top right, #fce4ec 0%, #f8bbd0 35%, #f48fb1 70%, #ec407a 100%)',
-        minHeight: { xs: 'calc(100vh - 64px)', md: '100vh' },
-        pt: { xs: '80px', md: '100px' },
-        pb: { xs: 4, md: 6 },
+        minHeight: { xs: '100vh', md: '100vh' },
+        pt: { xs: '64px', md: '80px' },
+        pb: { xs: 2, md: 4 },
         overflow: 'hidden',
         '&::before': {
           content: '""',

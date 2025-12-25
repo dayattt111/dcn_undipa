@@ -23,11 +23,12 @@ type AnimateDecoration = {
 export const animatedDecorations: Array<AnimateDecoration> = [
   {
     sxRoot: {
-      top: -30,
-      right: 40,
+      top: { xs: -20, md: -30 },
+      right: { xs: 10, md: 40 },
+      display: { xs: 'none', sm: 'block' },
     },
     sxImgContainer: {
-      width: 330,
+      width: { xs: 150, sm: 200, md: 330 },
     },
     initial: { rotate: -20, opacity: 0, scale: 2, x: 200 },
     animate: { rotate: 0, opacity: 1, scale: 1, x: 0 },
@@ -44,11 +45,12 @@ export const animatedDecorations: Array<AnimateDecoration> = [
   },
   {
     sxRoot: {
-      top: 0,
-      left: 0,
+      top: { xs: -10, md: 0 },
+      left: { xs: -20, md: 0 },
+      display: { xs: 'none', sm: 'block' },
     },
     sxImgContainer: {
-      width: 250,
+      width: { xs: 120, sm: 180, md: 250 },
     },
     initial: { rotate: 10, opacity: 0, scale: 1.25, x: -100 },
     animate: { rotate: 0, opacity: 1, scale: 1, x: 0 },
@@ -65,12 +67,13 @@ export const animatedDecorations: Array<AnimateDecoration> = [
   },
   {
     sxRoot: {
-      left: 234,
-      bottom: 272,
+      left: { xs: 134, md: 234 },
+      bottom: { xs: 172, md: 272 },
       transform: 'rotate(-45deg)',
+      display: { xs: 'none', lg: 'block' },
     },
     sxImgContainer: {
-      width: 40,
+      width: { xs: 25, md: 40 },
     },
     initial: { rotate: -50, opacity: 0, y: 400 },
     animate: { rotate: 0, opacity: 1, y: 0 },
@@ -87,12 +90,13 @@ export const animatedDecorations: Array<AnimateDecoration> = [
   },
   {
     sxRoot: {
-      left: 274,
-      bottom: 216,
+      left: { xs: 174, md: 274 },
+      bottom: { xs: 136, md: 216 },
       transform: 'rotate(13deg)',
+      display: { xs: 'none', lg: 'block' },
     },
     sxImgContainer: {
-      width: 40,
+      width: { xs: 25, md: 40 },
     },
     initial: { rotate: -50, opacity: 0, y: 400 },
     animate: { rotate: 0, opacity: 1, y: 0 },
@@ -109,11 +113,12 @@ export const animatedDecorations: Array<AnimateDecoration> = [
   },
   {
     sxRoot: {
-      left: -110,
-      bottom: -160,
+      left: { xs: -60, md: -110 },
+      bottom: { xs: -100, md: -160 },
+      display: { xs: 'none', md: 'block' },
     },
     sxImgContainer: {
-      width: 520,
+      width: { xs: 280, sm: 380, md: 520 },
     },
     initial: { rotate: 0, opacity: 0, y: 300 },
     animate: { rotate: 0, opacity: 1, y: 0 },
@@ -130,11 +135,12 @@ export const animatedDecorations: Array<AnimateDecoration> = [
   },
   {
     sxRoot: {
-      left: 270,
-      bottom: 106,
+      left: { xs: 170, md: 270 },
+      bottom: { xs: 66, md: 106 },
+      display: { xs: 'none', sm: 'block' },
     },
     sxImgContainer: {
-      width: 148,
+      width: { xs: 80, sm: 100, md: 148 },
     },
     initial: { rotate: -50, opacity: 0, y: 400 },
     animate: { rotate: 0, opacity: 1, y: 0 },
@@ -151,11 +157,12 @@ export const animatedDecorations: Array<AnimateDecoration> = [
   },
   {
     sxRoot: {
-      bottom: 0,
-      left: 100,
+      bottom: { xs: -20, md: 0 },
+      left: { xs: 60, md: 100 },
+      display: { xs: 'none', md: 'block' },
     },
     sxImgContainer: {
-      width: 200,
+      width: { xs: 100, md: 200 },
     },
     initial: { rotate: -50, opacity: 0, y: 400 },
     animate: { rotate: 0, opacity: 1, y: 0 },
@@ -172,11 +179,12 @@ export const animatedDecorations: Array<AnimateDecoration> = [
   },
   {
     sxRoot: {
-      right: -60,
-      bottom: -84,
+      right: { xs: -40, md: -60 },
+      bottom: { xs: -50, md: -84 },
+      display: { xs: 'none', sm: 'block' },
     },
     sxImgContainer: {
-      width: 460,
+      width: { xs: 220, sm: 320, md: 460 },
     },
     initial: { rotate: 0, opacity: 0, scale: 1.1, x: 200 },
     animate: { rotate: -32, opacity: 1, scale: 1, x: 0 },
@@ -193,11 +201,12 @@ export const animatedDecorations: Array<AnimateDecoration> = [
   },
   {
     sxRoot: {
-      bottom: -90,
-      right: 320,
+      bottom: { xs: -60, md: -90 },
+      right: { xs: 180, sm: 240, md: 320 },
+      display: { xs: 'none', sm: 'block' },
     },
     sxImgContainer: {
-      width: 206,
+      width: { xs: 120, sm: 150, md: 206 },
     },
     initial: { rotate: 20, opacity: 0, scale: 1.1, x: 200 },
     animate: { rotate: -6, opacity: 1, scale: 1, x: 0 },

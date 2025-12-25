@@ -55,8 +55,8 @@ const HomeHeroContent = () => {
         direction='column'
         sx={{
           position: 'relative',
-          minHeight: { xs: 'auto', md: 'calc(100vh - 200px)' },
-          py: { xs: 4, md: 8 },
+          minHeight: { xs: 'calc(100vh - 100px)', md: 'calc(100vh - 160px)' },
+          py: { xs: 2, md: 4 },
           px: { xs: 2, sm: 3, md: 4 },
           alignItems: 'center',
           justifyContent: 'center',
@@ -120,9 +120,9 @@ const HomeHeroContent = () => {
           <Typography
             component='h1'
             sx={{
-              mb: 3,
-              fontSize: { xs: 32, md: 44, lg: 56 },
-              lineHeight: 1.3,
+              mb: { xs: 1.5, md: 2 },
+              fontSize: { xs: 28, sm: 36, md: 44, lg: 56 },
+              lineHeight: { xs: 1.2, md: 1.3 },
               fontWeight: '800',
             }}
           >
@@ -133,16 +133,18 @@ const HomeHeroContent = () => {
           <Typography
             component='p'
             sx={{
-              mb: 5,
+              mb: { xs: 3, md: 4 },
               color: 'text.secondary',
               fontWeight: 500,
-              lineHeight: 1.8,
+              lineHeight: { xs: 1.6, md: 1.8 },
               fontSize: {
-                xs: 15,
+                xs: 14,
+                sm: 15,
                 md: 18,
               },
               maxWidth: '680px',
               mx: 'auto',
+              px: { xs: 1, sm: 0 },
             }}
           >
             Komunitas developer <strong>UNDIPA</strong> yang belajar dan berkembang bersama melalui{' '}
@@ -223,7 +225,7 @@ const HomeHeroContent = () => {
               gap: { xs: 3, sm: 4, md: 5 },
               justifyContent: 'center',
               flexWrap: 'wrap',
-              mt: { xs: 4, md: 5 },
+              mt: { xs: 3, md: 4 },
               px: { xs: 2, sm: 0 },
               opacity: 0.85,
             }}
