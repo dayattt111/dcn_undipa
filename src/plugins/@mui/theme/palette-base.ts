@@ -1,19 +1,19 @@
 import { PaletteOptions } from '@mui/material'
 
 // DCN UNDIPA Color Scheme
-// Primary: Maroon/Burgundy (#4c0027)
-// Secondary: Magenta/Pink (#980f5a)
+// Primary: Magenta (#980f5a) - Warna utama
+// Secondary: Maroon/Burgundy (#4c0027) - Warna sekunder
 const paletteBase: Partial<PaletteOptions> = {
   primary: {
-    light: '#7a1845',      // Lighter maroon
-    main: '#4c0027',       // Main maroon
-    dark: '#2d0017',       // Darker maroon
+    light: '#b8336e',      // Lighter magenta
+    main: '#980f5a',       // Main magenta (WARNA UTAMA)
+    dark: '#4c0027',       // Darker to maroon
     contrastText: '#ffffff',
   },
   secondary: {
-    light: '#c73d7f',      // Lighter magenta
-    main: '#980f5a',       // Main magenta
-    dark: '#6b0a3f',       // Darker magenta
+    light: '#7a1845',      // Lighter maroon
+    main: '#4c0027',       // Main maroon
+    dark: '#2d0017',       // Darker maroon
     contrastText: '#ffffff',
   },
   success: {
