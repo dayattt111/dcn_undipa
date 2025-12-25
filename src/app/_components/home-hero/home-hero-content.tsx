@@ -55,7 +55,9 @@ const HomeHeroContent = () => {
         direction='column'
         sx={{
           position: 'relative',
-          minHeight: '100vh',
+          minHeight: { xs: 'auto', md: 'calc(100vh - 200px)' },
+          py: { xs: 4, md: 8 },
+          px: { xs: 2, sm: 3, md: 4 },
           alignItems: 'center',
           justifyContent: 'center',
         }}
@@ -153,24 +155,29 @@ const HomeHeroContent = () => {
           <Box
             sx={{
               display: 'flex',
-              gap: 2,
+              gap: { xs: 1.5, md: 2 },
               justifyContent: 'center',
               flexWrap: 'wrap',
               mb: 2,
+              width: '100%',
+              maxWidth: '500px',
             }}
           >
             <Box
               component='a'
               href='#home-contact'
               sx={{
-                px: 4,
-                py: 1.5,
+                px: { xs: 3, md: 4 },
+                py: { xs: 1.2, md: 1.5 },
                 backgroundColor: 'primary.main',
                 color: 'primary.contrastText',
                 borderRadius: 2,
                 fontWeight: 600,
-                fontSize: 15,
+                fontSize: { xs: 14, md: 15 },
                 textDecoration: 'none',
+                textAlign: 'center',
+                flex: { xs: '1 1 auto', sm: '0 1 auto' },
+                minWidth: { xs: '140px', sm: 'auto' },
                 transition: 'all 0.3s',
                 '&:hover': {
                   backgroundColor: 'primary.dark',
@@ -185,15 +192,18 @@ const HomeHeroContent = () => {
               component='a'
               href='/leaderboard'
               sx={{
-                px: 4,
-                py: 1.5,
+                px: { xs: 3, md: 4 },
+                py: { xs: 1.2, md: 1.5 },
                 border: 2,
                 borderColor: 'primary.main',
                 color: 'primary.main',
                 borderRadius: 2,
                 fontWeight: 600,
-                fontSize: 15,
+                fontSize: { xs: 14, md: 15 },
                 textDecoration: 'none',
+                textAlign: 'center',
+                flex: { xs: '1 1 auto', sm: '0 1 auto' },
+                minWidth: { xs: '140px', sm: 'auto' },
                 transition: 'all 0.3s',
                 '&:hover': {
                   backgroundColor: 'primary.main',
@@ -210,52 +220,56 @@ const HomeHeroContent = () => {
           <Box
             sx={{
               display: 'flex',
-              gap: { xs: 2, md: 4 },
+              gap: { xs: 3, sm: 4, md: 5 },
               justifyContent: 'center',
               flexWrap: 'wrap',
-              mt: 5,
+              mt: { xs: 4, md: 5 },
+              px: { xs: 2, sm: 0 },
               opacity: 0.85,
             }}
           >
-            <Box sx={{ textAlign: 'center' }}>
+            <Box sx={{ textAlign: 'center', minWidth: { xs: '80px', sm: 'auto' } }}>
               <Typography
                 sx={{
-                  fontSize: { xs: 24, md: 32 },
+                  fontSize: { xs: 28, sm: 32, md: 36 },
                   fontWeight: 800,
                   color: 'primary.main',
+                  lineHeight: 1,
                 }}
               >
                 150+
               </Typography>
-              <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>
+              <Typography sx={{ fontSize: { xs: 12, md: 13 }, color: 'text.secondary', mt: 0.5 }}>
                 Members
               </Typography>
             </Box>
-            <Box sx={{ textAlign: 'center' }}>
+            <Box sx={{ textAlign: 'center', minWidth: { xs: '80px', sm: 'auto' } }}>
               <Typography
                 sx={{
-                  fontSize: { xs: 24, md: 32 },
+                  fontSize: { xs: 28, sm: 32, md: 36 },
                   fontWeight: 800,
                   color: 'primary.main',
+                  lineHeight: 1,
                 }}
               >
                 520+
               </Typography>
-              <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>
+              <Typography sx={{ fontSize: { xs: 12, md: 13 }, color: 'text.secondary', mt: 0.5 }}>
                 Kelas Selesai
               </Typography>
             </Box>
-            <Box sx={{ textAlign: 'center' }}>
+            <Box sx={{ textAlign: 'center', minWidth: { xs: '80px', sm: 'auto' } }}>
               <Typography
                 sx={{
-                  fontSize: { xs: 24, md: 32 },
+                  fontSize: { xs: 28, sm: 32, md: 36 },
                   fontWeight: 800,
                   color: 'primary.main',
+                  lineHeight: 1,
                 }}
               >
                 24+
               </Typography>
-              <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>
+              <Typography sx={{ fontSize: { xs: 12, md: 13 }, color: 'text.secondary', mt: 0.5 }}>
                 Event
               </Typography>
             </Box>
@@ -274,11 +288,12 @@ const HomeHeroContent = () => {
           }}
         >
           <Box
-            sx={() => ({
-              mt: '120px',
-              mb: '-120px',
+            sx={{
+              mt: { xs: 4, md: '80px' },
+              mb: { xs: -8, md: '-80px' },
               textAlign: 'center',
-            })}
+              display: { xs: 'none', md: 'block' },
+            }}
           >
             <Link
               to='home-about'

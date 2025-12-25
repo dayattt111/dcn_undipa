@@ -38,7 +38,7 @@ const StatItem = ({ value, label, suffix = '+', delay = 0 }: StatItemProps) => {
       <Box
         sx={{
           textAlign: 'center',
-          p: 4,
+          p: { xs: 3, sm: 4 },
           borderRadius: 3,
           background: palette.mode === 'dark'
             ? 'linear-gradient(135deg, rgba(45, 0, 23, 0.8) 0%, rgba(76, 0, 39, 0.6) 100%)'
@@ -58,7 +58,7 @@ const StatItem = ({ value, label, suffix = '+', delay = 0 }: StatItemProps) => {
         <Typography
           component='div'
           sx={{
-            fontSize: { xs: 42, md: 56 },
+            fontSize: { xs: 36, sm: 42, md: 56 },
             fontWeight: 800,
             color: 'primary.main',
             mb: 1,
@@ -70,11 +70,11 @@ const StatItem = ({ value, label, suffix = '+', delay = 0 }: StatItemProps) => {
         </Typography>
         <Typography
           sx={{
-            fontSize: { xs: 15, md: 17 },
+            fontSize: { xs: 13, sm: 15, md: 17 },
             fontWeight: 600,
             color: 'text.secondary',
             textTransform: 'uppercase',
-            letterSpacing: 1,
+            letterSpacing: { xs: 0.5, md: 1 },
           }}
         >
           {label}
@@ -113,13 +113,13 @@ const HomeStats = () => {
       }}
     >
       <Container>
-        <Box sx={{ textAlign: 'center', mb: 8 }}>
+        <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 8 } }}>
           <SectionTitle>MILESTONE KOMUNITAS</SectionTitle>
           <Typography
             component='h2'
             variant='h2'
             sx={{
-              fontSize: { xs: 28, md: 40 },
+              fontSize: { xs: 24, sm: 28, md: 40 },
               fontWeight: 700,
               mb: 2,
             }}
@@ -128,10 +128,11 @@ const HomeStats = () => {
           </Typography>
           <Typography
             sx={{
-              fontSize: { xs: 16, md: 18 },
+              fontSize: { xs: 14, sm: 16, md: 18 },
               color: 'text.secondary',
               maxWidth: 600,
               mx: 'auto',
+              px: { xs: 2, sm: 0 },
             }}
           >
             Bersama mencapai milestone dan membangun skill development yang solid

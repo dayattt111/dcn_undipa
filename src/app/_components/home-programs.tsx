@@ -32,8 +32,8 @@ const HomeProgramItem = ({ item }: ProgramItemProps) => {
         sx={{
           cursor: 'pointer',
           borderRadius: 4,
-          px: 5,
-          py: 4,
+          px: { xs: 3, sm: 4, md: 5 },
+          py: { xs: 3, sm: 3.5, md: 4 },
           position: 'relative',
           overflow: 'hidden',
           transition: (theme) =>
@@ -70,10 +70,10 @@ const HomeProgramItem = ({ item }: ProgramItemProps) => {
         <Box
           sx={{
             img: {
-              height: 64,
+              height: { xs: 56, md: 64 },
               width: 'auto',
             },
-            mb: 3,
+            mb: { xs: 2, md: 3 },
           }}
         >
           <Image
@@ -81,20 +81,21 @@ const HomeProgramItem = ({ item }: ProgramItemProps) => {
             alt={item.title}
             width={100}
             height={100}
+            style={{ width: 'auto', height: '100%' }}
           />
         </Box>
         <Typography
           component='h3'
           variant='h4'
-          sx={{ fontSize: { xs: 18, md: 20 }, mb: 2, pr: 4 }}
+          sx={{ fontSize: { xs: 16, sm: 18, md: 20 }, mb: { xs: 1.5, md: 2 }, pr: { xs: 8, sm: 10 } }}
         >
           {item.title}
         </Typography>
 
-        <Box sx={{ minHeight: 70, overflow: 'hidden' }}>
+        <Box sx={{ minHeight: { xs: 60, md: 70 }, overflow: 'hidden' }}>
           <Typography
             component='p'
-            sx={{ color: 'text.secondary', fontSize: 15, lineHeight: 1.6 }}
+            sx={{ color: 'text.secondary', fontSize: { xs: 14, md: 15 }, lineHeight: 1.6 }}
           >
             {item.description}
           </Typography>

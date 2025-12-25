@@ -136,14 +136,14 @@ const HomeAbout = () => {
       }}
     >
       <Container>
-        <Grid container spacing={8}>
-          <Grid size={{ xs: 12, md: 7 }} sx={{ pr: 6 }}>
-            <Box sx={{ position: 'relative', width: { xs: '100%', md: 400 } }}>
+        <Grid container spacing={{ xs: 4, md: 8 }}>
+          <Grid size={{ xs: 12, md: 7 }} sx={{ pr: { xs: 0, md: 6 } }}>
+            <Box sx={{ position: 'relative', width: '100%', maxWidth: { md: 400 } }}>
               <SectionTitle>TENTANG KAMI</SectionTitle>
               <Typography
                 variant='h2'
                 component='h2'
-                sx={{ mb: 3, fontWeight: '700', fontSize: { xs: 28, md: 36 } }}
+                sx={{ mb: { xs: 2, md: 3 }, fontWeight: '700', fontSize: { xs: 24, sm: 28, md: 36 } }}
               >
                 Dicoding Community Network UNDIPA
               </Typography>
@@ -153,8 +153,9 @@ const HomeAbout = () => {
                 sx={{
                   color: 'text.primary',
                   fontWeight: '600',
-                  fontSize: { xs: 19, md: 24 },
+                  fontSize: { xs: 17, sm: 19, md: 24 },
                   mb: 2,
+                  lineHeight: 1.4,
                 }}
               >
                 Komunitas developer yang belajar dan berkembang bersama.
@@ -162,8 +163,8 @@ const HomeAbout = () => {
               <Typography
                 sx={{
                   color: 'text.secondary',
-                  fontSize: { xs: 16, md: 18 },
-                  mb: 3,
+                  fontSize: { xs: 14, sm: 16, md: 18 },
+                  mb: 2,
                   lineHeight: 1.7,
                 }}
               >
@@ -174,8 +175,8 @@ const HomeAbout = () => {
               <Typography
                 sx={{
                   color: 'text.secondary',
-                  fontSize: { xs: 16, md: 18 },
-                  mb: 4,
+                  fontSize: { xs: 14, sm: 16, md: 18 },
+                  mb: { xs: 3, md: 4 },
                   lineHeight: 1.7,
                 }}
               >
@@ -213,6 +214,8 @@ const HomeAbout = () => {
               sx={{
                 position: 'relative',
                 overflowX: { xs: 'hidden', md: 'unset' },
+                display: { xs: 'none', md: 'block' },
+                minHeight: { md: 400 },
               }}
             >
               <Box sx={{ position: 'absolute', top: -100, right: 132 }}>
@@ -301,8 +304,8 @@ const HomeAbout = () => {
                   borderRadius: 2,
                   overflow: 'hidden',
                   lineHeight: 0,
-                  width: 330,
-                  height: 330,
+                  width: { xs: 250, md: 330 },
+                  height: { xs: 250, md: 330 },
                 }}
               >
                 <Image
@@ -311,6 +314,7 @@ const HomeAbout = () => {
                   height={350}
                   quality={100}
                   alt='about img'
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </Box>
               <Box
@@ -321,8 +325,8 @@ const HomeAbout = () => {
                   borderRadius: 2,
                   overflow: 'hidden',
                   lineHeight: 0,
-                  width: 290,
-                  height: 290,
+                  width: { xs: 220, md: 290 },
+                  height: { xs: 220, md: 290 },
                 }}
               >
                 <Image
@@ -331,6 +335,7 @@ const HomeAbout = () => {
                   height={330}
                   quality={100}
                   alt='about img'
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </Box>
             </Box>
