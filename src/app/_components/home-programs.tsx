@@ -60,7 +60,7 @@ const HomeProgramItem = ({ item }: ProgramItemProps) => {
             fontSize: 11,
             fontWeight: 600,
             textTransform: 'uppercase',
-            backgroundColor: item.status === 'active' ? '#4CAF50' : '#FF9800',
+            backgroundColor: item.status === 'active' ? '#2e7d32' : '#ed6c02',
             color: '#fff',
           }}
         >
@@ -132,7 +132,7 @@ const HomePrograms = () => {
         width: '100%',
         pt: { xs: 8, md: 14 },
         pb: { xs: 6, md: 12 },
-        backgroundColor: palette.mode === 'dark' ? '#151733' : '#087ae7',
+        backgroundColor: palette.mode === 'dark' ? '#1a1a1a' : palette.primary.main,
       }}
     >
       <Container maxWidth='md'>

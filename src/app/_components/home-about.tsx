@@ -25,25 +25,25 @@ export const data: Data[] = [
     id: 1,
     title: 'Bootcamp',
     icon: null,
-    color: '#2196F3',
+    color: '#4c0027',    // Primary maroon
   },
   {
     id: 2,
     title: 'Study Group',
     icon: null,
-    color: '#4CAF50',
+    color: '#980f5a',    // Secondary magenta
   },
   {
     id: 3,
     title: 'Event & Workshop',
     icon: null,
-    color: '#FF9800',
+    color: '#7a1845',    // Light maroon
   },
   {
     id: 4,
     title: 'Mentoring',
     icon: null,
-    color: '#9C27B0',
+    color: '#c73d7f',    // Light magenta
   },
 ]
 
