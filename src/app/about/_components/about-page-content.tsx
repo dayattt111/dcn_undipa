@@ -1,36 +1,41 @@
 'use client'
 
-import { Box, Container, Typography, Paper, Grid2 as Grid } from '@mui/material'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
+import Paper from '@mui/material/Paper'
+import Grid from '@mui/material/Grid'
+import Divider from '@mui/material/Divider'
 import { motion } from 'framer-motion'
 
 export default function AboutPageContent() {
   const stats = [
-    { label: 'Anggota Aktif', value: '150+', icon: '👥' },
-    { label: 'Program & Event', value: '50+', icon: '📚' },
-    { label: 'Project Selesai', value: '80+', icon: '🚀' },
-    { label: 'Partner', value: '20+', icon: '🤝' },
+    { label: 'Anggota Aktif', value: '150+', gradient: 'linear-gradient(135deg, #980f5a 0%, #c2185b 100%)' },
+    { label: 'Program & Event', value: '50+', gradient: 'linear-gradient(135deg, #4c0027 0%, #6b0a3f 100%)' },
+    { label: 'Project Selesai', value: '80+', gradient: 'linear-gradient(135deg, #ec407a 0%, #f06292 100%)' },
+    { label: 'Partner', value: '20+', gradient: 'linear-gradient(135deg, #6b0a3f 0%, #980f5a 100%)' },
   ]
 
   const values = [
     {
-      icon: '🎯',
       title: 'Fokus pada Pembelajaran',
       description: 'Kami percaya bahwa belajar adalah proses berkelanjutan. Melalui berbagai program dan kegiatan, kami memfasilitasi pembelajaran yang efektif dan menyenangkan.',
+      color: '#980f5a',
     },
     {
-      icon: '🤝',
       title: 'Kolaborasi & Networking',
       description: 'Membangun komunitas yang solid dengan saling mendukung, berbagi ilmu, dan berkolaborasi dalam berbagai project teknologi.',
+      color: '#4c0027',
     },
     {
-      icon: '💡',
       title: 'Inovasi & Kreativitas',
       description: 'Mendorong setiap anggota untuk berpikir kreatif dan inovatif dalam menyelesaikan masalah serta mengembangkan solusi teknologi.',
+      color: '#ec407a',
     },
     {
-      icon: '🌟',
       title: 'Pengembangan Karir',
       description: 'Membantu anggota mengembangkan skill yang dibutuhkan industri dan membuka peluang karir di bidang teknologi.',
+      color: '#6b0a3f',
     },
   ]
 
@@ -71,18 +76,38 @@ export default function AboutPageContent() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Box sx={{ textAlign: 'center', mb: 8 }}>
-            <Typography
-              variant="h2"
+          <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 10 } }}>
+            <Box
               sx={{
-                fontWeight: 800,
-                fontSize: { xs: '2rem', md: '3rem' },
-                mb: 2,
+                display: 'inline-block',
+                px: 3,
+                py: 1,
+                mb: 3,
+                borderRadius: 50,
+                border: '1px solid',
+                borderColor: 'primary.main',
+                background: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? 'rgba(152, 15, 90, 0.1)'
+                    : 'rgba(152, 15, 90, 0.05)',
+              }}
+            >
+              <Typography variant="body2" color="primary" fontWeight={600}>
+                Dicoding Community Network
+              </Typography>
+            </Box>
+            <Typography
+              variant="h1"
+              sx={{
+                fontWeight: 900,
+                fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
+                mb: 3,
                 background: (theme) =>
                   `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
+                letterSpacing: '-0.02em',
               }}
             >
               Tentang Kami
@@ -91,127 +116,271 @@ export default function AboutPageContent() {
               variant="h5"
               color="text.secondary"
               sx={{
-                maxWidth: 800,
+                maxWidth: 900,
                 mx: 'auto',
                 lineHeight: 1.8,
-                fontSize: { xs: '1rem', md: '1.25rem' },
+                fontSize: { xs: '1.1rem', md: '1.35rem' },
+                fontWeight: 400,
+                px: { xs: 2, md: 0 },
               }}
             >
-              Dicoding Community Network UNDIPA adalah komunitas developer dan tech enthusiast yang berfokus pada
-              pembelajaran, kolaborasi, dan pengembangan skill digital.
+              Komunitas developer dan tech enthusiast yang berfokus pada pembelajaran, kolaborasi, dan pengembangan skill digital di Universitas Pendidikan Indonesia.
             </Typography>
           </Box>
         </motion.div>
 
         {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          <Grid container spacing={3} sx={{ mb: 8 }}>
-            {stats.map((stat, index) => (
-              <Grid size={{ xs: 6, sm: 3 }} key={index}>
+        <Grid container spacing={{ xs: 2, md: 3 }} sx={{ mb: { xs: 8, md: 12 } }}>
+          {stats.map((stat, index) => (
+            <Grid item xs={6} sm={3} key={index}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
+              >
                 <Paper
                   elevation={0}
                   sx={{
-                    p: 3,
+                    p: { xs: 2.5, md: 4 },
                     textAlign: 'center',
-                    borderRadius: 3,
-                    border: '1px solid',
-                    borderColor: 'divider',
-                    background: (theme) =>
-                      theme.palette.mode === 'dark'
-                        ? 'rgba(255, 255, 255, 0.05)'
-                        : 'rgba(255, 255, 255, 0.8)',
-                    backdropFilter: 'blur(10px)',
-                    transition: 'all 0.3s ease',
+                    borderRadius: 4,
+                    position: 'relative',
+                    overflow: 'hidden',
+                    background: stat.gradient,
+                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                     '&:hover': {
-                      transform: 'translateY(-8px)',
-                      boxShadow: 4,
+                      transform: 'translateY(-12px) scale(1.02)',
+                      boxShadow: '0 20px 40px rgba(152, 15, 90, 0.3)',
+                    },
+                    '&::before': {
+                      content: '""',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: 'rgba(255, 255, 255, 0.1)',
+                      backdropFilter: 'blur(10px)',
                     },
                   }}
                 >
-                  <Typography sx={{ fontSize: '2.5rem', mb: 1 }}>{stat.icon}</Typography>
-                  <Typography variant="h4" fontWeight={800} color="primary" gutterBottom>
-                    {stat.value}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" fontWeight={600}>
-                    {stat.label}
-                  </Typography>
+                  <Box sx={{ position: 'relative', zIndex: 1 }}>
+                    <Typography
+                      variant="h3"
+                      sx={{
+                        fontWeight: 900,
+                        color: 'white',
+                        mb: 1,
+                        fontSize: { xs: '2rem', md: '3rem' },
+                        textShadow: '0 2px 10px rgba(0,0,0,0.2)',
+                      }}
+                    >
+                      {stat.value}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: 'rgba(255, 255, 255, 0.95)',
+                        fontWeight: 600,
+                        fontSize: { xs: '0.75rem', md: '0.875rem' },
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.5px',
+                      }}
+                    >
+                      {stat.label}
+                    </Typography>
+                  </Box>
                 </Paper>
-              </Grid>
-            ))}
-          </Grid>
-        </motion.div>
+              </motion.div>
+            </Grid>
+          ))}
+        </Grid>
 
         {/* Mission & Vision */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <Grid container spacing={4} sx={{ mb: 8 }}>
-            <Grid size={{ xs: 12, md: 6 }}>
+        <Grid container spacing={{ xs: 3, md: 4 }} sx={{ mb: { xs: 8, md: 12 } }}>
+          <Grid item xs={12} md={6}>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
               <Paper
                 elevation={0}
                 sx={{
-                  p: 4,
+                  p: { xs: 3, md: 5 },
                   height: '100%',
-                  borderRadius: 3,
-                  border: '1px solid',
-                  borderColor: 'divider',
+                  borderRadius: 4,
+                  border: '2px solid',
+                  borderColor: 'primary.main',
+                  position: 'relative',
+                  overflow: 'hidden',
                   background: (theme) =>
                     theme.palette.mode === 'dark'
-                      ? 'rgba(152, 15, 90, 0.1)'
-                      : 'rgba(152, 15, 90, 0.05)',
+                      ? 'rgba(255, 255, 255, 0.02)'
+                      : 'rgba(255, 255, 255, 0.9)',
+                  backdropFilter: 'blur(20px)',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    transform: 'translateY(-8px)',
+                    boxShadow: '0 20px 40px rgba(152, 15, 90, 0.15)',
+                    borderColor: 'secondary.main',
+                  },
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: -2,
+                    left: -2,
+                    right: -2,
+                    height: '6px',
+                    background: (theme) =>
+                      `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                  },
                 }}
               >
-                <Typography variant="h4" fontWeight={700} gutterBottom sx={{ mb: 3 }}>
-                  🎯 Visi Kami
-                </Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, fontSize: '1.1rem' }}>
+                <Box
+                  sx={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 1,
+                    mb: 3,
+                    px: 2,
+                    py: 0.5,
+                    borderRadius: 2,
+                    background: (theme) =>
+                      theme.palette.mode === 'dark'
+                        ? 'rgba(152, 15, 90, 0.2)'
+                        : 'rgba(152, 15, 90, 0.1)',
+                  }}
+                >
+                  <Typography variant="overline" color="primary" fontWeight={700} sx={{ letterSpacing: 1 }}>
+                    Visi Kami
+                  </Typography>
+                </Box>
+                <Typography
+                  variant="h5"
+                  sx={{
+                    lineHeight: 1.8,
+                    fontSize: { xs: '1.1rem', md: '1.35rem' },
+                    fontWeight: 500,
+                    color: 'text.primary',
+                  }}
+                >
                   Menjadi komunitas teknologi terdepan yang melahirkan developer berkualitas dan profesional,
                   serta memberikan dampak positif bagi ekosistem teknologi di Indonesia.
                 </Typography>
               </Paper>
-            </Grid>
-            <Grid size={{ xs: 12, md: 6 }}>
+            </motion.div>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
               <Paper
                 elevation={0}
                 sx={{
-                  p: 4,
+                  p: { xs: 3, md: 5 },
                   height: '100%',
-                  borderRadius: 3,
-                  border: '1px solid',
-                  borderColor: 'divider',
+                  borderRadius: 4,
+                  border: '2px solid',
+                  borderColor: 'secondary.main',
+                  position: 'relative',
+                  overflow: 'hidden',
                   background: (theme) =>
                     theme.palette.mode === 'dark'
-                      ? 'rgba(76, 0, 39, 0.1)'
-                      : 'rgba(76, 0, 39, 0.05)',
+                      ? 'rgba(255, 255, 255, 0.02)'
+                      : 'rgba(255, 255, 255, 0.9)',
+                  backdropFilter: 'blur(20px)',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    transform: 'translateY(-8px)',
+                    boxShadow: '0 20px 40px rgba(76, 0, 39, 0.15)',
+                    borderColor: 'primary.main',
+                  },
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: -2,
+                    left: -2,
+                    right: -2,
+                    height: '6px',
+                    background: (theme) =>
+                      `linear-gradient(90deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
+                  },
                 }}
               >
-                <Typography variant="h4" fontWeight={700} gutterBottom sx={{ mb: 3 }}>
-                  🚀 Misi Kami
-                </Typography>
-                <Box component="ul" sx={{ pl: 3, m: 0 }}>
-                  <Typography component="li" variant="body1" color="text.secondary" sx={{ mb: 1.5, lineHeight: 1.8 }}>
-                    Menyelenggarakan program pembelajaran berkualitas
-                  </Typography>
-                  <Typography component="li" variant="body1" color="text.secondary" sx={{ mb: 1.5, lineHeight: 1.8 }}>
-                    Memfasilitasi kolaborasi dan networking
-                  </Typography>
-                  <Typography component="li" variant="body1" color="text.secondary" sx={{ mb: 1.5, lineHeight: 1.8 }}>
-                    Membuka akses ke peluang karir di industri teknologi
-                  </Typography>
-                  <Typography component="li" variant="body1" color="text.secondary" sx={{ lineHeight: 1.8 }}>
-                    Mendorong inovasi dan pengembangan project
+                <Box
+                  sx={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 1,
+                    mb: 3,
+                    px: 2,
+                    py: 0.5,
+                    borderRadius: 2,
+                    background: (theme) =>
+                      theme.palette.mode === 'dark'
+                        ? 'rgba(76, 0, 39, 0.2)'
+                        : 'rgba(76, 0, 39, 0.1)',
+                  }}
+                >
+                  <Typography variant="overline" color="secondary" fontWeight={700} sx={{ letterSpacing: 1 }}>
+                    Misi Kami
                   </Typography>
                 </Box>
+                <Box component="ul" sx={{ pl: 0, m: 0, listStyle: 'none' }}>
+                  {[
+                    'Menyelenggarakan program pembelajaran berkualitas',
+                    'Memfasilitasi kolaborasi dan networking',
+                    'Membuka akses ke peluang karir di industri teknologi',
+                    'Mendorong inovasi dan pengembangan project'
+                  ].map((mission, idx) => (
+                    <Box
+                      key={idx}
+                      component="li"
+                      sx={{
+                        display: 'flex',
+                        gap: 2,
+                        mb: 2,
+                        '&:last-child': { mb: 0 },
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          minWidth: 24,
+                          height: 24,
+                          borderRadius: '50%',
+                          background: (theme) =>
+                            `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: 'white',
+                          fontSize: '0.75rem',
+                          fontWeight: 700,
+                          mt: 0.5,
+                        }}
+                      >
+                        {idx + 1}
+                      </Box>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          lineHeight: 1.8,
+                          fontSize: { xs: '0.95rem', md: '1.1rem' },
+                          color: 'text.primary',
+                        }}
+                      >
+                        {mission}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Box>
               </Paper>
-            </Grid>
+            </motion.div>
           </Grid>
-        </motion.div>
+        </Grid>
 
         {/* Values */}
         <motion.div
@@ -231,7 +400,7 @@ export default function AboutPageContent() {
             </Typography>
             <Grid container spacing={3}>
               {values.map((value, index) => (
-                <Grid size={{ xs: 12, sm: 6 }} key={index}>
+                <Grid item xs={12} sm={6} key={index}>
                   <Paper
                     elevation={0}
                     sx={{
