@@ -88,6 +88,9 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
+  other: {
+    'google-site-verification': 'your-verification-code',
+  },
 }
 
 export default function RootLayout({
@@ -95,52 +98,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>): JSX.Element {
-  // JSON-LD Structured Data for SEO
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: AppConfig.appName,
-    description: AppConfig.appDescription,
-    url: AppConfig.siteUrl,
-    logo: `${AppConfig.siteUrl}/logo.png`,
-    sameAs: [
-      AppConfig.socialLinks.instagram,
-      AppConfig.socialLinks.github,
-    ],
-    contactPoint: {
-      '@type': 'ContactPoint',
-      email: AppConfig.socialLinks.email,
-      contactType: 'General Inquiry',
-    },
-  }
-
-  const websiteSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: AppConfig.appName,
-    url: AppConfig.siteUrl,
-    description: AppConfig.appDescription,
-    inLanguage: 'id-ID',
-  }
-
   return (
-    <html lang='id'>
-      <head>
-        {/* JSON-LD Structured Data */}
-        <script
-          type='application/ld+json'
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
-          }}
-        />
-        <script
-          type='application/ld+json'
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteSchema),
-          }}
-        />
-      </head>
-      <body className={plugJakartaSans.variable}>
+    <html lang='id' suppressHydrationWarning>
+      <body className={plugJakartaSans.variable} suppressHydrationWarning>
         <AppRouterCacheProvider options={{ key: 'css' }}>
           <AppContextProvider>
             <MuiThemeProvider>
