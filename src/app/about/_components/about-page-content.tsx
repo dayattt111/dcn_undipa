@@ -383,91 +383,147 @@ export default function AboutPageContent() {
         </Grid>
 
         {/* Values */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <Box sx={{ mb: 8 }}>
-            <Typography
-              variant="h4"
-              fontWeight={800}
-              textAlign="center"
-              gutterBottom
-              sx={{ mb: 6 }}
-            >
-              Nilai-Nilai Kami
-            </Typography>
-            <Grid container spacing={3}>
-              {values.map((value, index) => (
-                <Grid item xs={12} sm={6} key={index}>
+        <Box sx={{ mb: { xs: 8, md: 12 } }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <Box sx={{ textAlign: 'center', mb: 6 }}>
+              <Typography
+                variant="h3"
+                fontWeight={900}
+                sx={{
+                  fontSize: { xs: '2rem', md: '2.5rem' },
+                  mb: 2,
+                }}
+              >
+                Nilai-Nilai Kami
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 700, mx: 'auto' }}>
+                Prinsip-prinsip yang menjadi fondasi dalam setiap kegiatan komunitas kami
+              </Typography>
+            </Box>
+          </motion.div>
+          <Grid container spacing={{ xs: 2, md: 3 }}>
+            {values.map((value, index) => (
+              <Grid item xs={12} sm={6} key={index}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                >
                   <Paper
                     elevation={0}
                     sx={{
-                      p: 3,
+                      p: { xs: 3, md: 4 },
                       height: '100%',
-                      borderRadius: 3,
+                      borderRadius: 4,
                       border: '1px solid',
                       borderColor: 'divider',
+                      position: 'relative',
+                      overflow: 'hidden',
                       background: (theme) =>
                         theme.palette.mode === 'dark'
-                          ? 'rgba(255, 255, 255, 0.05)'
-                          : 'rgba(255, 255, 255, 0.8)',
+                          ? 'rgba(255, 255, 255, 0.02)'
+                          : 'rgba(255, 255, 255, 0.9)',
                       backdropFilter: 'blur(10px)',
-                      transition: 'all 0.3s ease',
+                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                       '&:hover': {
-                        transform: 'translateY(-4px)',
-                        boxShadow: 4,
+                        transform: 'translateY(-8px)',
+                        boxShadow: `0 12px 24px ${value.color}30`,
+                        borderColor: value.color,
+                      },
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '4px',
+                        height: '100%',
+                        background: value.color,
                       },
                     }}
                   >
-                    <Typography sx={{ fontSize: '2.5rem', mb: 2 }}>{value.icon}</Typography>
-                    <Typography variant="h6" fontWeight={700} gutterBottom>
+                    <Box
+                      sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: 48,
+                        height: 48,
+                        borderRadius: 2,
+                        background: `${value.color}20`,
+                        mb: 2,
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          width: 24,
+                          height: 24,
+                          borderRadius: '50%',
+                          background: value.color,
+                        }}
+                      />
+                    </Box>
+                    <Typography variant="h6" fontWeight={700} gutterBottom sx={{ mb: 2 }}>
                       {value.title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8 }}>
                       {value.description}
                     </Typography>
                   </Paper>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-        </motion.div>
+                </motion.div>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
 
         {/* Timeline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <Box>
-            <Typography
-              variant="h4"
-              fontWeight={800}
-              textAlign="center"
-              gutterBottom
-              sx={{ mb: 6 }}
-            >
-              Perjalanan Kami
-            </Typography>
-            <Box sx={{ position: 'relative' }}>
-              {timeline.map((item, index) => (
+        <Box>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            <Box sx={{ textAlign: 'center', mb: 6 }}>
+              <Typography
+                variant="h3"
+                fontWeight={900}
+                sx={{
+                  fontSize: { xs: '2rem', md: '2.5rem' },
+                  mb: 2,
+                }}
+              >
+                Perjalanan Kami
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 700, mx: 'auto' }}>
+                Menelusuri jejak pertumbuhan dan perkembangan komunitas dari waktu ke waktu
+              </Typography>
+            </Box>
+          </motion.div>
+          <Box sx={{ position: 'relative', maxWidth: 900, mx: 'auto' }}>
+            {timeline.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
+              >
                 <Box
-                  key={index}
                   sx={{
                     position: 'relative',
-                    pb: 4,
-                    pl: { xs: 0, md: index % 2 === 0 ? 0 : '50%' },
-                    pr: { xs: 0, md: index % 2 === 0 ? '50%' : 0 },
+                    pb: 5,
+                    pl: { xs: 5, md: index % 2 === 0 ? 0 : '52%' },
+                    pr: { xs: 0, md: index % 2 === 0 ? '52%' : 0 },
                     '&::before': {
                       content: '""',
                       position: 'absolute',
-                      left: { xs: '20px', md: '50%' },
+                      left: { xs: '16px', md: '50%' },
                       top: 0,
                       bottom: index === timeline.length - 1 ? 'auto' : 0,
-                      width: '2px',
-                      height: index === timeline.length - 1 ? '40px' : '100%',
+                      width: '3px',
+                      height: index === timeline.length - 1 ? '60px' : '100%',
                       background: (theme) =>
                         `linear-gradient(180deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
                       transform: 'translateX(-50%)',
@@ -477,55 +533,84 @@ export default function AboutPageContent() {
                   <Paper
                     elevation={0}
                     sx={{
-                      p: 3,
-                      ml: { xs: 6, md: index % 2 === 0 ? 0 : 4 },
-                      mr: { xs: 0, md: index % 2 === 0 ? 4 : 0 },
-                      borderRadius: 3,
-                      border: '1px solid',
+                      p: { xs: 3, md: 4 },
+                      borderRadius: 4,
+                      border: '2px solid',
                       borderColor: 'divider',
                       background: (theme) =>
                         theme.palette.mode === 'dark'
-                          ? 'rgba(255, 255, 255, 0.05)'
-                          : 'rgba(255, 255, 255, 0.8)',
-                      backdropFilter: 'blur(10px)',
+                          ? 'rgba(255, 255, 255, 0.02)'
+                          : 'rgba(255, 255, 255, 0.9)',
+                      backdropFilter: 'blur(20px)',
                       position: 'relative',
+                      transition: 'all 0.3s ease',
+                      '&:hover': {
+                        transform: 'translateY(-4px)',
+                        boxShadow: '0 12px 24px rgba(152, 15, 90, 0.15)',
+                        borderColor: 'primary.main',
+                      },
                       '&::before': {
                         content: '""',
                         position: 'absolute',
-                        left: { xs: '-38px', md: index % 2 === 0 ? 'auto' : '-20px' },
-                        right: { xs: 'auto', md: index % 2 === 0 ? '-20px' : 'auto' },
+                        left: { xs: '-41px', md: index % 2 === 0 ? 'auto' : '-28px' },
+                        right: { xs: 'auto', md: index % 2 === 0 ? '-28px' : 'auto' },
                         top: '50%',
                         transform: 'translateY(-50%)',
-                        width: '12px',
-                        height: '12px',
+                        width: '20px',
+                        height: '20px',
                         borderRadius: '50%',
-                        bgcolor: 'primary.main',
-                        border: '3px solid',
+                        background: (theme) =>
+                          `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+                        border: '4px solid',
                         borderColor: 'background.paper',
-                        boxShadow: 3,
+                        boxShadow: '0 0 0 4px rgba(152, 15, 90, 0.1)',
+                        zIndex: 2,
                       },
                     }}
                   >
+                    <Box
+                      sx={{
+                        display: 'inline-block',
+                        px: 2,
+                        py: 0.5,
+                        mb: 2,
+                        borderRadius: 2,
+                        background: (theme) =>
+                          `linear-gradient(135deg, ${theme.palette.primary.main}20 0%, ${theme.palette.secondary.main}20 100%)`,
+                        border: '1px solid',
+                        borderColor: 'primary.main',
+                      }}
+                    >
+                      <Typography
+                        variant="h6"
+                        fontWeight={900}
+                        color="primary"
+                        sx={{ fontSize: { xs: '1.1rem', md: '1.25rem' } }}
+                      >
+                        {item.year}
+                      </Typography>
+                    </Box>
                     <Typography
                       variant="h5"
-                      fontWeight={800}
-                      color="primary"
+                      fontWeight={700}
                       gutterBottom
+                      sx={{ mb: 1.5, fontSize: { xs: '1.25rem', md: '1.5rem' } }}
                     >
-                      {item.year}
-                    </Typography>
-                    <Typography variant="h6" fontWeight={700} gutterBottom>
                       {item.title}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.8 }}>
+                    <Typography
+                      variant="body1"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.8, fontSize: { xs: '0.95rem', md: '1.05rem' } }}
+                    >
                       {item.description}
                     </Typography>
                   </Paper>
                 </Box>
-              ))}
-            </Box>
+              </motion.div>
+            ))}
           </Box>
-        </motion.div>
+        </Box>
       </Container>
     </Box>
   )
