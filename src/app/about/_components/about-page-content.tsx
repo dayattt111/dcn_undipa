@@ -132,7 +132,7 @@ export default function AboutPageContent() {
         {/* Stats Section */}
         <Grid container spacing={{ xs: 2, md: 3 }} sx={{ mb: { xs: 8, md: 12 } }}>
           {stats.map((stat, index) => (
-            <Grid item xs={6} sm={3} key={index}>
+            <Grid size={{ xs: 6, sm: 3 }} key={index}>
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -198,7 +198,7 @@ export default function AboutPageContent() {
 
         {/* Mission & Vision */}
         <Grid container spacing={{ xs: 3, md: 4 }} sx={{ mb: { xs: 8, md: 12 } }}>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -271,7 +271,7 @@ export default function AboutPageContent() {
               </Paper>
             </motion.div>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -407,7 +407,7 @@ export default function AboutPageContent() {
           </motion.div>
           <Grid container spacing={{ xs: 2, md: 3 }}>
             {values.map((value, index) => (
-              <Grid item xs={12} sm={6} key={index}>
+              <Grid size={{ xs: 12, sm: 6 }} key={index}>
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
