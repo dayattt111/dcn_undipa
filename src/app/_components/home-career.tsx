@@ -5,7 +5,6 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
-import Paper from '@mui/material/Paper'
 import Button from '@mui/material/Button'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -52,8 +51,8 @@ const HomeCareer = () => {
         position: 'relative',
         background:
           palette.mode === 'dark'
-            ? 'linear-gradient(180deg, #2d0017 0%, #1a0010 100%)'
-            : 'linear-gradient(180deg, #fff5f8 0%, #fafafa 100%)',
+            ? 'linear-gradient(180deg, #1a0010 0%, #2d0017 100%)'
+            : 'linear-gradient(180deg, #ffffff 0%, #fff5f8 100%)',
       }}
     >
       <Container maxWidth="lg">
@@ -89,7 +88,7 @@ const HomeCareer = () => {
             <Typography
               variant="body1"
               color="text.secondary"
-              sx={{ maxWidth: 600, mx: 'auto' }}
+              sx={{ maxWidth: 700, mx: 'auto', fontSize: { xs: '1rem', md: '1.1rem' } }}
             >
               Temukan lowongan pekerjaan di bidang teknologi yang sesuai dengan keahlianmu
             </Typography>
@@ -98,19 +97,19 @@ const HomeCareer = () => {
 
         <Grid container spacing={3}>
           {featuredJobs.map((job, index) => (
-            <Grid size={{ xs: 12, md: 4 }} key={job.id}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={job.id}>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Paper
+                <Box
                   component={Link}
                   href={`/career/${job.slug}`}
-                  elevation={0}
                   sx={{
-                    display: 'block',
+                    display: 'flex',
+                    flexDirection: 'column',
                     textDecoration: 'none',
                     p: 3,
                     borderRadius: 3,
@@ -120,8 +119,10 @@ const HomeCareer = () => {
                       palette.mode === 'dark'
                         ? 'rgba(255, 255, 255, 0.02)'
                         : 'rgba(255, 255, 255, 0.9)',
+                    backdropFilter: 'blur(10px)',
                     transition: 'all 0.3s ease',
                     height: '100%',
+                    minHeight: 280,
                     '&:hover': {
                       transform: 'translateY(-8px)',
                       boxShadow: '0 12px 24px rgba(152, 15, 90, 0.2)',
@@ -129,45 +130,69 @@ const HomeCareer = () => {
                     },
                   }}
                 >
-                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2, mb: 2 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2, mb: 2.5 }}>
                     {job.companyLogo && (
                       <Box
                         sx={{
-                          width: 48,
-                          height: 48,
+                          width: 56,
+                          height: 56,
                           borderRadius: 2,
                           border: '1px solid',
                           borderColor: 'divider',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          fontSize: '24px',
+                          fontSize: '28px',
                           flexShrink: 0,
+                          background: palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'white',
                         }}
                       >
                         {job.companyLogo}
                       </Box>
                     )}
                     <Box sx={{ flex: 1, minWidth: 0 }}>
-                      <Typography variant="h6" fontWeight={700} gutterBottom noWrap>
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          fontWeight: 700,
+                          mb: 0.5,
+                          fontSize: { xs: '1.1rem', md: '1.25rem' },
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          display: '-webkit-box',
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: 'vertical',
+                          color: 'text.primary',
+                        }}
+                      >
                         {job.title}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary" noWrap>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: 'text.secondary',
+                          fontWeight: 600,
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
                         {job.company}
                       </Typography>
                     </Box>
                   </Box>
 
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2 }}>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 2.5 }}>
                     <Box
                       sx={{
                         px: 1.5,
                         py: 0.5,
-                        borderRadius: 1,
+                        borderRadius: 1.5,
                         fontSize: '0.75rem',
-                        fontWeight: 600,
+                        fontWeight: 700,
                         bgcolor: getWorkTypeColor(job.workType),
                         color: 'white',
+                        textTransform: 'capitalize',
                       }}
                     >
                       {getWorkTypeLabel(job.workType)}
@@ -176,7 +201,7 @@ const HomeCareer = () => {
                       sx={{
                         px: 1.5,
                         py: 0.5,
-                        borderRadius: 1,
+                        borderRadius: 1.5,
                         fontSize: '0.75rem',
                         fontWeight: 600,
                         border: '1px solid',
@@ -192,24 +217,41 @@ const HomeCareer = () => {
                     variant="body2"
                     color="text.secondary"
                     sx={{
-                      mb: 2,
+                      mb: 2.5,
+                      lineHeight: 1.7,
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       display: '-webkit-box',
-                      WebkitLineClamp: 2,
+                      WebkitLineClamp: 3,
                       WebkitBoxOrient: 'vertical',
-                      minHeight: 40,
+                      flex: 1,
                     }}
                   >
                     {job.description}
                   </Typography>
 
                   {job.salaryRange && (
-                    <Typography variant="body2" color="primary" fontWeight={700}>
-                      {job.salaryRange}
-                    </Typography>
+                    <Box
+                      sx={{
+                        pt: 2,
+                        borderTop: '1px solid',
+                        borderColor: 'divider',
+                        mt: 'auto',
+                      }}
+                    >
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: 'primary.main',
+                          fontWeight: 700,
+                          fontSize: '0.95rem',
+                        }}
+                      >
+                        {job.salaryRange}
+                      </Typography>
+                    </Box>
                   )}
-                </Paper>
+                </Box>
               </motion.div>
             </Grid>
           ))}
