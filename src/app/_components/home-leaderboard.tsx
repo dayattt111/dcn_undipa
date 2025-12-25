@@ -146,176 +146,730 @@ const HomeLeaderboard = () => {
           </Box>
         </motion.div>
 
-        <Grid container spacing={3}>
-          {topUsers.map((user, index) => {
-            const rankStyle = getRankColor(user.rank)
-            return (
-              <Grid size={{ xs: 12, sm: 6, md: user.rank <= 3 ? 4 : 6 }} key={user.rank}>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Box
-                    sx={{
-                      p: 3,
-                      borderRadius: 3,
-                      border: user.rank <= 3 ? '2px solid' : '1px solid',
-                      borderColor: user.rank <= 3 ? `${rankStyle.shadow}` : 'divider',
-                      background:
-                        palette.mode === 'dark'
-                          ? 'rgba(255, 255, 255, 0.02)'
-                          : 'rgba(255, 255, 255, 0.9)',
-                      backdropFilter: 'blur(10px)',
-                      transition: 'all 0.3s ease',
-                      position: 'relative',
-                      overflow: 'hidden',
-                      '&:hover': {
-                        transform: 'translateY(-8px)',
-                        boxShadow: `0 12px 24px ${rankStyle.shadow}`,
-                        borderColor: user.rank <= 3 ? rankStyle.shadow : 'primary.main',
-                      },
-                      '&::before':
-                        user.rank <= 3
-                          ? {
+        {/* Podium Display for Top 3 */}
+        <Box sx={{ mb: 6 }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', md: 'row' },
+              justifyContent: 'center',
+              alignItems: { xs: 'stretch', md: 'flex-end' },
+              gap: { xs: 3, md: 2 },
+              maxWidth: 900,
+              mx: 'auto',
+            }}
+          >
+            {/* Rank 2 - Left (Silver) */}
+            {topUsers[1] && (
+              <Box
+                sx={{
+                  flex: 1,
+                  order: { xs: 2, md: 1 },
+                }}
+              >
+                {(() => {
+                  const user = topUsers[1]
+                  const rankStyle = getRankColor(user.rank)
+                  return (
+                    <motion.div
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                    >
+                      <Box
+                        sx={{
+                          textAlign: 'center',
+                          pt: { xs: 0, md: 8 },
+                        }}
+                      >
+                        {/* Podium Platform */}
+                        <Box
+                          sx={{
+                            p: 3,
+                            borderRadius: 3,
+                            border: '2px solid',
+                            borderColor: rankStyle.shadow,
+                            background:
+                              palette.mode === 'dark'
+                                ? 'rgba(255, 255, 255, 0.03)'
+                                : 'rgba(255, 255, 255, 0.95)',
+                            backdropFilter: 'blur(10px)',
+                            position: 'relative',
+                            overflow: 'hidden',
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                              transform: 'translateY(-8px)',
+                              boxShadow: `0 16px 32px ${rankStyle.shadow}`,
+                            },
+                            '&::before': {
                               content: '""',
                               position: 'absolute',
                               top: 0,
                               left: 0,
                               right: 0,
-                              height: '4px',
+                              height: '6px',
                               background: rankStyle.bg,
-                            }
-                          : {},
-                    }}
-                  >
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2.5 }}>
-                      {/* Rank Badge */}
+                            },
+                          }}
+                        >
+                          {/* Rank Badge - Large */}
+                          <Box
+                            sx={{
+                              width: 64,
+                              height: 64,
+                              borderRadius: '50%',
+                              background: rankStyle.bg,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              mx: 'auto',
+                              mb: 2,
+                              boxShadow: `0 6px 20px ${rankStyle.shadow}`,
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                fontWeight: 900,
+                                fontSize: '1.75rem',
+                                color: rankStyle.text,
+                              }}
+                            >
+                              🥈
+                            </Typography>
+                          </Box>
+
+                          {/* Avatar */}
+                          <Avatar
+                            src={user.avatar}
+                            alt={user.name}
+                            sx={{
+                              width: 80,
+                              height: 80,
+                              mx: 'auto',
+                              mb: 2,
+                              border: '4px solid',
+                              borderColor: 'transparent',
+                              background: rankStyle.bg,
+                              fontSize: '2rem',
+                              fontWeight: 700,
+                              boxShadow: `0 4px 16px ${rankStyle.shadow}`,
+                            }}
+                          >
+                            {user.name.charAt(0)}
+                          </Avatar>
+
+                          {/* Name */}
+                          <Typography
+                            variant="h5"
+                            sx={{
+                              fontWeight: 800,
+                              mb: 1,
+                              fontSize: { xs: '1.25rem', md: '1.5rem' },
+                            }}
+                          >
+                            {user.name}
+                          </Typography>
+
+                          {/* Points */}
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              color: 'primary.main',
+                              fontWeight: 700,
+                              mb: 2.5,
+                              fontSize: '1.25rem',
+                            }}
+                          >
+                            {user.points.toLocaleString()} poin
+                          </Typography>
+
+                          {/* Stats */}
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              justifyContent: 'center',
+                              gap: 4,
+                              pt: 2.5,
+                              borderTop: '1px solid',
+                              borderColor: 'divider',
+                            }}
+                          >
+                            <Box>
+                              <Typography
+                                variant="body2"
+                                color="text.secondary"
+                                sx={{ fontSize: '0.75rem', mb: 0.5, fontWeight: 600 }}
+                              >
+                                Badges
+                              </Typography>
+                              <Typography
+                                variant="h6"
+                                sx={{
+                                  fontWeight: 800,
+                                  fontSize: '1.5rem',
+                                  color: 'text.primary',
+                                }}
+                              >
+                                {user.badges}
+                              </Typography>
+                            </Box>
+                            <Box>
+                              <Typography
+                                variant="body2"
+                                color="text.secondary"
+                                sx={{ fontSize: '0.75rem', mb: 0.5, fontWeight: 600 }}
+                              >
+                                Courses
+                              </Typography>
+                              <Typography
+                                variant="h6"
+                                sx={{
+                                  fontWeight: 800,
+                                  fontSize: '1.5rem',
+                                  color: 'text.primary',
+                                }}
+                              >
+                                {user.completedCourses}
+                              </Typography>
+                            </Box>
+                          </Box>
+                        </Box>
+                      </Box>
+                    </motion.div>
+                  )
+                })()}
+              </Box>
+            )}
+
+            {/* Rank 1 - Center (Gold) */}
+            {topUsers[0] && (
+              <Box
+                sx={{
+                  flex: 1,
+                  order: { xs: 1, md: 2 },
+                }}
+              >
+                {(() => {
+                  const user = topUsers[0]
+                  const rankStyle = getRankColor(user.rank)
+                  return (
+                    <motion.div
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.1 }}
+                    >
                       <Box
                         sx={{
-                          width: 48,
-                          height: 48,
-                          borderRadius: '50%',
-                          background: rankStyle.bg,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0,
-                          boxShadow: user.rank <= 3 ? `0 4px 12px ${rankStyle.shadow}` : 'none',
+                          textAlign: 'center',
                         }}
                       >
-                        <Typography
+                        {/* Podium Platform - Tallest */}
+                        <Box
                           sx={{
-                            fontWeight: 900,
-                            fontSize: '1.25rem',
-                            color: rankStyle.text,
-                          }}
-                        >
-                          #{user.rank}
-                        </Typography>
-                      </Box>
-
-                      {/* Avatar */}
-                      <Avatar
-                        src={user.avatar}
-                        alt={user.name}
-                        sx={{
-                          width: 56,
-                          height: 56,
-                          border: '3px solid',
-                          borderColor: user.rank <= 3 ? 'transparent' : 'divider',
-                          background: user.rank <= 3 ? rankStyle.bg : 'primary.main',
-                          fontSize: '1.5rem',
-                          fontWeight: 700,
-                        }}
-                      >
-                        {user.name.charAt(0)}
-                      </Avatar>
-
-                      {/* Name & Points */}
-                      <Box sx={{ flex: 1, minWidth: 0 }}>
-                        <Typography
-                          variant="h6"
-                          sx={{
-                            fontWeight: 700,
-                            fontSize: { xs: '1.1rem', md: '1.25rem' },
-                            mb: 0.5,
+                            p: 4,
+                            borderRadius: 3,
+                            border: '3px solid',
+                            borderColor: rankStyle.shadow,
+                            background:
+                              palette.mode === 'dark'
+                                ? 'rgba(255, 255, 255, 0.05)'
+                                : 'rgba(255, 255, 255, 1)',
+                            backdropFilter: 'blur(10px)',
+                            position: 'relative',
                             overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap',
+                            transition: 'all 0.3s ease',
+                            boxShadow: `0 8px 24px ${rankStyle.shadow}`,
+                            '&:hover': {
+                              transform: 'translateY(-8px)',
+                              boxShadow: `0 20px 40px ${rankStyle.shadow}`,
+                            },
+                            '&::before': {
+                              content: '""',
+                              position: 'absolute',
+                              top: 0,
+                              left: 0,
+                              right: 0,
+                              height: '8px',
+                              background: rankStyle.bg,
+                            },
                           }}
                         >
-                          {user.name}
-                        </Typography>
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            color: 'primary.main',
-                            fontWeight: 700,
-                            fontSize: '1rem',
-                          }}
-                        >
-                          {user.points.toLocaleString()} poin
-                        </Typography>
-                      </Box>
-                    </Box>
+                          {/* Rank Badge - Largest */}
+                          <Box
+                            sx={{
+                              width: 80,
+                              height: 80,
+                              borderRadius: '50%',
+                              background: rankStyle.bg,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              mx: 'auto',
+                              mb: 2.5,
+                              boxShadow: `0 8px 24px ${rankStyle.shadow}`,
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                fontWeight: 900,
+                                fontSize: '2.5rem',
+                                color: rankStyle.text,
+                              }}
+                            >
+                              🥇
+                            </Typography>
+                          </Box>
 
-                    {/* Stats */}
+                          {/* Avatar */}
+                          <Avatar
+                            src={user.avatar}
+                            alt={user.name}
+                            sx={{
+                              width: 100,
+                              height: 100,
+                              mx: 'auto',
+                              mb: 2.5,
+                              border: '5px solid',
+                              borderColor: 'transparent',
+                              background: rankStyle.bg,
+                              fontSize: '2.5rem',
+                              fontWeight: 700,
+                              boxShadow: `0 6px 20px ${rankStyle.shadow}`,
+                            }}
+                          >
+                            {user.name.charAt(0)}
+                          </Avatar>
+
+                          {/* Name */}
+                          <Typography
+                            variant="h4"
+                            sx={{
+                              fontWeight: 900,
+                              mb: 1.5,
+                              fontSize: { xs: '1.5rem', md: '2rem' },
+                            }}
+                          >
+                            {user.name}
+                          </Typography>
+
+                          {/* Points */}
+                          <Typography
+                            variant="h5"
+                            sx={{
+                              color: 'primary.main',
+                              fontWeight: 800,
+                              mb: 3,
+                              fontSize: { xs: '1.5rem', md: '1.75rem' },
+                            }}
+                          >
+                            {user.points.toLocaleString()} poin
+                          </Typography>
+
+                          {/* Stats */}
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              justifyContent: 'center',
+                              gap: 5,
+                              pt: 3,
+                              borderTop: '1px solid',
+                              borderColor: 'divider',
+                            }}
+                          >
+                            <Box>
+                              <Typography
+                                variant="body2"
+                                color="text.secondary"
+                                sx={{ fontSize: '0.875rem', mb: 0.5, fontWeight: 600 }}
+                              >
+                                Badges
+                              </Typography>
+                              <Typography
+                                variant="h5"
+                                sx={{
+                                  fontWeight: 900,
+                                  fontSize: '1.75rem',
+                                  color: 'text.primary',
+                                }}
+                              >
+                                {user.badges}
+                              </Typography>
+                            </Box>
+                            <Box>
+                              <Typography
+                                variant="body2"
+                                color="text.secondary"
+                                sx={{ fontSize: '0.875rem', mb: 0.5, fontWeight: 600 }}
+                              >
+                                Courses
+                              </Typography>
+                              <Typography
+                                variant="h5"
+                                sx={{
+                                  fontWeight: 900,
+                                  fontSize: '1.75rem',
+                                  color: 'text.primary',
+                                }}
+                              >
+                                {user.completedCourses}
+                              </Typography>
+                            </Box>
+                          </Box>
+                        </Box>
+                      </Box>
+                    </motion.div>
+                  )
+                })()}
+              </Box>
+            )}
+
+            {/* Rank 3 - Right (Bronze) */}
+            {topUsers[2] && (
+              <Box
+                sx={{
+                  flex: 1,
+                  order: { xs: 3, md: 3 },
+                }}
+              >
+                {(() => {
+                  const user = topUsers[2]
+                  const rankStyle = getRankColor(user.rank)
+                  return (
+                    <motion.div
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.3 }}
+                    >
+                      <Box
+                        sx={{
+                          textAlign: 'center',
+                          pt: { xs: 0, md: 12 },
+                        }}
+                      >
+                        {/* Podium Platform */}
+                        <Box
+                          sx={{
+                            p: 3,
+                            borderRadius: 3,
+                            border: '2px solid',
+                            borderColor: rankStyle.shadow,
+                            background:
+                              palette.mode === 'dark'
+                                ? 'rgba(255, 255, 255, 0.03)'
+                                : 'rgba(255, 255, 255, 0.95)',
+                            backdropFilter: 'blur(10px)',
+                            position: 'relative',
+                            overflow: 'hidden',
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                              transform: 'translateY(-8px)',
+                              boxShadow: `0 16px 32px ${rankStyle.shadow}`,
+                            },
+                            '&::before': {
+                              content: '""',
+                              position: 'absolute',
+                              top: 0,
+                              left: 0,
+                              right: 0,
+                              height: '6px',
+                              background: rankStyle.bg,
+                            },
+                          }}
+                        >
+                          {/* Rank Badge - Large */}
+                          <Box
+                            sx={{
+                              width: 64,
+                              height: 64,
+                              borderRadius: '50%',
+                              background: rankStyle.bg,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              mx: 'auto',
+                              mb: 2,
+                              boxShadow: `0 6px 20px ${rankStyle.shadow}`,
+                            }}
+                          >
+                            <Typography
+                              sx={{
+                                fontWeight: 900,
+                                fontSize: '1.75rem',
+                                color: rankStyle.text,
+                              }}
+                            >
+                              🥉
+                            </Typography>
+                          </Box>
+
+                          {/* Avatar */}
+                          <Avatar
+                            src={user.avatar}
+                            alt={user.name}
+                            sx={{
+                              width: 80,
+                              height: 80,
+                              mx: 'auto',
+                              mb: 2,
+                              border: '4px solid',
+                              borderColor: 'transparent',
+                              background: rankStyle.bg,
+                              fontSize: '2rem',
+                              fontWeight: 700,
+                              boxShadow: `0 4px 16px ${rankStyle.shadow}`,
+                            }}
+                          >
+                            {user.name.charAt(0)}
+                          </Avatar>
+
+                          {/* Name */}
+                          <Typography
+                            variant="h5"
+                            sx={{
+                              fontWeight: 800,
+                              mb: 1,
+                              fontSize: { xs: '1.25rem', md: '1.5rem' },
+                            }}
+                          >
+                            {user.name}
+                          </Typography>
+
+                          {/* Points */}
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              color: 'primary.main',
+                              fontWeight: 700,
+                              mb: 2.5,
+                              fontSize: '1.25rem',
+                            }}
+                          >
+                            {user.points.toLocaleString()} poin
+                          </Typography>
+
+                          {/* Stats */}
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              justifyContent: 'center',
+                              gap: 4,
+                              pt: 2.5,
+                              borderTop: '1px solid',
+                              borderColor: 'divider',
+                            }}
+                          >
+                            <Box>
+                              <Typography
+                                variant="body2"
+                                color="text.secondary"
+                                sx={{ fontSize: '0.75rem', mb: 0.5, fontWeight: 600 }}
+                              >
+                                Badges
+                              </Typography>
+                              <Typography
+                                variant="h6"
+                                sx={{
+                                  fontWeight: 800,
+                                  fontSize: '1.5rem',
+                                  color: 'text.primary',
+                                }}
+                              >
+                                {user.badges}
+                              </Typography>
+                            </Box>
+                            <Box>
+                              <Typography
+                                variant="body2"
+                                color="text.secondary"
+                                sx={{ fontSize: '0.75rem', mb: 0.5, fontWeight: 600 }}
+                              >
+                                Courses
+                              </Typography>
+                              <Typography
+                                variant="h6"
+                                sx={{
+                                  fontWeight: 800,
+                                  fontSize: '1.5rem',
+                                  color: 'text.primary',
+                                }}
+                              >
+                                {user.completedCourses}
+                              </Typography>
+                            </Box>
+                          </Box>
+                        </Box>
+                      </Box>
+                    </motion.div>
+                  )
+                })()}
+              </Box>
+            )}
+          </Box>
+        </Box>
+
+        {/* Rank 4 & 5 - Regular Cards */}
+        {topUsers.length > 3 && (
+          <Grid container spacing={3} sx={{ maxWidth: 800, mx: 'auto' }}>
+            {topUsers.slice(3).map((user, index) => {
+              const rankStyle = getRankColor(user.rank)
+              return (
+                <Grid size={{ xs: 12, sm: 6 }} key={user.rank}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  >
                     <Box
                       sx={{
-                        display: 'flex',
-                        gap: 3,
-                        pt: 2.5,
-                        borderTop: '1px solid',
+                        p: 3,
+                        borderRadius: 3,
+                        border: '1px solid',
                         borderColor: 'divider',
+                        background:
+                          palette.mode === 'dark'
+                            ? 'rgba(255, 255, 255, 0.02)'
+                            : 'rgba(255, 255, 255, 0.9)',
+                        backdropFilter: 'blur(10px)',
+                        transition: 'all 0.3s ease',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        '&:hover': {
+                          transform: 'translateY(-8px)',
+                          boxShadow: `0 12px 24px ${rankStyle.shadow}`,
+                          borderColor: 'primary.main',
+                        },
                       }}
                     >
-                      <Box sx={{ flex: 1 }}>
-                        <Typography
-                          variant="body2"
-                          color="text.secondary"
-                          sx={{ fontSize: '0.75rem', mb: 0.5, fontWeight: 600 }}
-                        >
-                          Badges
-                        </Typography>
-                        <Typography
-                          variant="h6"
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2.5 }}>
+                        {/* Rank Badge */}
+                        <Box
                           sx={{
-                            fontWeight: 800,
-                            fontSize: '1.25rem',
-                            color: 'text.primary',
+                            width: 48,
+                            height: 48,
+                            borderRadius: '50%',
+                            background: rankStyle.bg,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexShrink: 0,
                           }}
                         >
-                          {user.badges}
-                        </Typography>
+                          <Typography
+                            sx={{
+                              fontWeight: 900,
+                              fontSize: '1.25rem',
+                              color: rankStyle.text,
+                            }}
+                          >
+                            #{user.rank}
+                          </Typography>
+                        </Box>
+
+                        {/* Avatar */}
+                        <Avatar
+                          src={user.avatar}
+                          alt={user.name}
+                          sx={{
+                            width: 56,
+                            height: 56,
+                            border: '3px solid',
+                            borderColor: 'divider',
+                            background: 'primary.main',
+                            fontSize: '1.5rem',
+                            fontWeight: 700,
+                          }}
+                        >
+                          {user.name.charAt(0)}
+                        </Avatar>
+
+                        {/* Name & Points */}
+                        <Box sx={{ flex: 1, minWidth: 0 }}>
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              fontWeight: 700,
+                              fontSize: { xs: '1.1rem', md: '1.25rem' },
+                              mb: 0.5,
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            {user.name}
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: 'primary.main',
+                              fontWeight: 700,
+                              fontSize: '1rem',
+                            }}
+                          >
+                            {user.points.toLocaleString()} poin
+                          </Typography>
+                        </Box>
                       </Box>
-                      <Box sx={{ flex: 1 }}>
-                        <Typography
-                          variant="body2"
-                          color="text.secondary"
-                          sx={{ fontSize: '0.75rem', mb: 0.5, fontWeight: 600 }}
-                        >
-                          Courses
-                        </Typography>
-                        <Typography
-                          variant="h6"
-                          sx={{
-                            fontWeight: 800,
-                            fontSize: '1.25rem',
-                            color: 'text.primary',
-                          }}
-                        >
-                          {user.completedCourses}
-                        </Typography>
+
+                      {/* Stats */}
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          gap: 3,
+                          pt: 2.5,
+                          borderTop: '1px solid',
+                          borderColor: 'divider',
+                        }}
+                      >
+                        <Box sx={{ flex: 1 }}>
+                          <Typography
+                            variant="body2"
+                            color="text.secondary"
+                            sx={{ fontSize: '0.75rem', mb: 0.5, fontWeight: 600 }}
+                          >
+                            Badges
+                          </Typography>
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              fontWeight: 800,
+                              fontSize: '1.25rem',
+                              color: 'text.primary',
+                            }}
+                          >
+                            {user.badges}
+                          </Typography>
+                        </Box>
+                        <Box sx={{ flex: 1 }}>
+                          <Typography
+                            variant="body2"
+                            color="text.secondary"
+                            sx={{ fontSize: '0.75rem', mb: 0.5, fontWeight: 600 }}
+                          >
+                            Courses
+                          </Typography>
+                          <Typography
+                            variant="h6"
+                            sx={{
+                              fontWeight: 800,
+                              fontSize: '1.25rem',
+                              color: 'text.primary',
+                            }}
+                          >
+                            {user.completedCourses}
+                          </Typography>
+                        </Box>
                       </Box>
                     </Box>
-                  </Box>
-                </motion.div>
-              </Grid>
-            )
-          })}
-        </Grid>
+                  </motion.div>
+                </Grid>
+              )
+            })}
+          </Grid>
+        )}
 
         {/* Achievement Info */}
         <motion.div
