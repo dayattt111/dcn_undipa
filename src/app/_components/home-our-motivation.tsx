@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 // components
 import Image from 'next/image'
@@ -9,30 +9,54 @@ import Grid from '@mui/material/Grid'
 import Divider from '@mui/material/Divider'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
+import Skeleton from '@mui/material/Skeleton'
 import { SectionTitle } from '@/components/core'
 import { styled, useMediaQuery, useTheme } from '@mui/material'
 
-const CONTENT = [
-  {
-    value: '5+',
-    description: 'Years Providing Services',
-    image: '/images/medal.png',
-  },
-  {
-    value: '125+',
-    description: 'Satisfaction Clients',
-    image: '/images/smile.png',
-  },
-  {
-    value: '500+',
-    description: 'Project Complete',
-    image: '/images/success.png',
-  },
-]
+// firebase
+import { getStats } from '@/lib/firebase/community'
+import type { ICommunityStats } from '@/types/community'
 
 const HomeOurMotivation = () => {
   const { breakpoints } = useTheme()
   const matchMobile = useMediaQuery(breakpoints.down('sm'))
+  const [stats, setStats] = useState<ICommunityStats | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const data = await getStats()
+        setStats(data)
+      } catch (error) {
+        console.error('Error fetching stats:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchStats()
+  }, [])
+
+  const CONTENT = stats
+    ? [
+        {
+          value: `${stats.totalMembers}+`,
+          description: 'Anggota Komunitas',
+          image: '/images/medal.png',
+        },
+        {
+          value: `${stats.totalClassesCompleted}+`,
+          description: 'Kelas Diselesaikan',
+          image: '/images/smile.png',
+        },
+        {
+          value: `${stats.totalEvents}+`,
+          description: 'Event Terlaksana',
+          image: '/images/success.png',
+        },
+      ]
+    : []
+
   return (
     <Box
       id='home-motivation'
@@ -79,27 +103,46 @@ const HomeOurMotivation = () => {
               }}
             >
               <Grid container spacing={matchMobile ? 2 : 3}>
-                {CONTENT.map((item, index) => (
-                  <Grid key={String(index)} size={{ xs: 6, md: 4 }}>
-                    <StyledBox>
-                      <StyledTitle variant='h2' sx={{ fontWeight: '800' }}>
-                        {item.value}
-                      </StyledTitle>
-                      <StyledIcon>
-                        <Image
-                          src={item.image}
-                          width={80}
-                          height={80}
-                          alt={item.description}
-                        />
-                      </StyledIcon>
-                      <Divider sx={{ width: 36, my: 2 }} />
-                      <Box>
-                        <Typography>{item.description}</Typography>
-                      </Box>
-                    </StyledBox>
+                {loading ? (
+                  // Loading skeletons
+                  Array.from({ length: 3 }).map((_, index) => (
+                    <Grid key={index} size={{ xs: 6, md: 4 }}>
+                      <StyledBox>
+                        <Skeleton variant="text" width="60%" height={48} sx={{ mb: 2 }} />
+                        <Skeleton variant="rectangular" width={80} height={80} sx={{ borderRadius: 2, mb: 2 }} />
+                        <Skeleton variant="text" width="80%" />
+                      </StyledBox>
+                    </Grid>
+                  ))
+                ) : CONTENT.length > 0 ? (
+                  CONTENT.map((item, index) => (
+                    <Grid key={String(index)} size={{ xs: 6, md: 4 }}>
+                      <StyledBox>
+                        <StyledTitle variant='h2' sx={{ fontWeight: '800' }}>
+                          {item.value}
+                        </StyledTitle>
+                        <StyledIcon>
+                          <Image
+                            src={item.image}
+                            width={80}
+                            height={80}
+                            alt={item.description}
+                          />
+                        </StyledIcon>
+                        <Divider sx={{ width: 36, my: 2 }} />
+                        <Box>
+                          <Typography>{item.description}</Typography>
+                        </Box>
+                      </StyledBox>
+                    </Grid>
+                  ))
+                ) : (
+                  <Grid size={{ xs: 12 }}>
+                    <Typography textAlign="center" color="text.secondary">
+                      Data statistik tidak tersedia
+                    </Typography>
                   </Grid>
-                ))}
+                )}
               </Grid>
             </Box>
           </Grid>

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // components
 import Image from 'next/image'
@@ -9,6 +9,7 @@ import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import CountdownTimer from '@/components/core/countdown-timer'
+import Skeleton from '@mui/material/Skeleton'
 
 // hooks
 import { useTheme } from '@mui/material/styles'
@@ -16,8 +17,8 @@ import { useTheme } from '@mui/material/styles'
 // types
 import { ICommunityProgram } from '@/types/community'
 
-// constants
-import { communityPrograms } from '@/constants/community'
+// firebase
+import { getActivePrograms } from '@/lib/firebase/programs'
 
 // configs
 import { AppConfig } from '@/configs'
@@ -128,6 +129,23 @@ const HomeProgramItem = ({ item }: ProgramItemProps) => {
 
 const HomePrograms = () => {
   const { palette } = useTheme()
+  const [programs, setPrograms] = useState<ICommunityProgram[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchPrograms = async () => {
+      try {
+        const data = await getActivePrograms()
+        setPrograms(data.slice(0, 6)) // Limit to 6 programs for homepage
+      } catch (error) {
+        console.error('Error fetching programs:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchPrograms()
+  }, [])
+
   return (
     <Box
       id='home-programs'
@@ -267,9 +285,30 @@ const HomePrograms = () => {
         </Box>
 
         <Grid container spacing={3}>
-          {communityPrograms.map((item) => (
-            <HomeProgramItem item={item} key={item.id} />
-          ))}
+          {loading ? (
+            // Loading skeletons
+            Array.from({ length: 3 }).map((_, index) => (
+              <Grid size={{ xs: 12, md: 6, lg: 4 }} key={index}>
+                <Box sx={{ p: 5, backgroundColor: 'background.paper', borderRadius: 4 }}>
+                  <Skeleton variant="rectangular" width={64} height={64} sx={{ mb: 3, borderRadius: 2 }} />
+                  <Skeleton variant="text" width="80%" height={32} sx={{ mb: 2 }} />
+                  <Skeleton variant="text" width="100%" />
+                  <Skeleton variant="text" width="90%" />
+                  <Skeleton variant="text" width="60%" />
+                </Box>
+              </Grid>
+            ))
+          ) : programs.length > 0 ? (
+            programs.map((item) => (
+              <HomeProgramItem item={item} key={item.id} />
+            ))
+          ) : (
+            <Grid size={{ xs: 12 }}>
+              <Box sx={{ textAlign: 'center', py: 8, color: '#fbfbfb' }}>
+                <Typography variant="h6">Belum ada program tersedia</Typography>
+              </Box>
+            </Grid>
+          )}
         </Grid>
 
         <Box sx={{ textAlign: 'center', mt: 6, color: '#fbfbfb' }}>

@@ -1,67 +1,36 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import Avatar from '@mui/material/Avatar'
+import Skeleton from '@mui/material/Skeleton'
 import { motion } from 'framer-motion'
 import { useTheme } from '@mui/material/styles'
 
-interface LeaderboardUser {
-  rank: number
-  name: string
-  avatar?: string
-  points: number
-  badges: number
-  completedCourses: number
-}
+// firebase
+import { getLeaderboard, type ILeaderboardUser } from '@/lib/firebase/community'
 
 const HomeLeaderboard = () => {
   const { palette } = useTheme()
+  const [topUsers, setTopUsers] = useState<ILeaderboardUser[]>([])
+  const [loading, setLoading] = useState(true)
 
-  // Sample leaderboard data - replace with real data later
-  const topUsers: LeaderboardUser[] = [
-    {
-      rank: 1,
-      name: 'Ahmad Rizki',
-      avatar: '/avatars/user-1.jpg',
-      points: 2850,
-      badges: 15,
-      completedCourses: 12,
-    },
-    {
-      rank: 2,
-      name: 'Siti Nurhaliza',
-      avatar: '/avatars/user-2.jpg',
-      points: 2640,
-      badges: 13,
-      completedCourses: 10,
-    },
-    {
-      rank: 3,
-      name: 'Budi Santoso',
-      avatar: '/avatars/user-3.jpg',
-      points: 2480,
-      badges: 12,
-      completedCourses: 9,
-    },
-    {
-      rank: 4,
-      name: 'Dewi Lestari',
-      points: 2320,
-      badges: 11,
-      completedCourses: 8,
-    },
-    {
-      rank: 5,
-      name: 'Eko Prasetyo',
-      points: 2150,
-      badges: 10,
-      completedCourses: 8,
-    },
-  ]
+  useEffect(() => {
+    const fetchLeaderboard = async () => {
+      try {
+        const data = await getLeaderboard()
+        setTopUsers(data.slice(0, 5)) // Top 5 users
+      } catch (error) {
+        console.error('Error fetching leaderboard:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchLeaderboard()
+  }, [])
 
   const getRankColor = (rank: number) => {
     switch (rank) {
@@ -148,17 +117,61 @@ const HomeLeaderboard = () => {
 
         {/* Podium Display for Top 3 */}
         <Box sx={{ mb: 6 }}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              justifyContent: 'center',
-              alignItems: { xs: 'stretch', md: 'flex-end' },
-              gap: { xs: 3, md: 2 },
-              maxWidth: 900,
-              mx: 'auto',
-            }}
-          >
+          {loading ? (
+            // Loading Skeleton for Podium
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: { xs: 'column', md: 'row' },
+                justifyContent: 'center',
+                alignItems: { xs: 'stretch', md: 'flex-end' },
+                gap: { xs: 3, md: 2 },
+                maxWidth: 900,
+                mx: 'auto',
+              }}
+            >
+              {Array.from({ length: 3 }).map((_, index) => (
+                <Box key={index} sx={{ flex: 1 }}>
+                  <Box
+                    sx={{
+                      p: 3,
+                      borderRadius: 3,
+                      border: '2px solid',
+                      borderColor: 'divider',
+                      backgroundColor: 'background.paper',
+                      textAlign: 'center',
+                    }}
+                  >
+                    <Skeleton variant="circular" width={80} height={80} sx={{ mx: 'auto', mb: 2 }} />
+                    <Skeleton variant="circular" width={100} height={100} sx={{ mx: 'auto', mb: 2 }} />
+                    <Skeleton variant="text" width="60%" height={32} sx={{ mx: 'auto', mb: 1 }} />
+                    <Skeleton variant="text" width="40%" height={28} sx={{ mx: 'auto', mb: 2 }} />
+                    <Box sx={{ display: 'flex', justifyContent: 'center', gap: 4 }}>
+                      <Skeleton variant="rectangular" width={60} height={60} sx={{ borderRadius: 2 }} />
+                      <Skeleton variant="rectangular" width={60} height={60} sx={{ borderRadius: 2 }} />
+                    </Box>
+                  </Box>
+                </Box>
+              ))}
+            </Box>
+          ) : topUsers.length < 3 ? (
+            <Box sx={{ textAlign: 'center', py: 8 }}>
+              <Typography variant="h6" color="text.secondary">
+                Belum ada data leaderboard
+              </Typography>
+            </Box>
+          ) : (
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: { xs: 'column', md: 'row' },
+                justifyContent: 'center',
+                alignItems: { xs: 'stretch', md: 'flex-end' },
+                gap: { xs: 3, md: 2 },
+                maxWidth: 900,
+                mx: 'auto',
+              }}
+            >
             {/* Rank 2 - Left (Silver) */}
             {topUsers[1] && (
               <Box
@@ -708,10 +721,11 @@ const HomeLeaderboard = () => {
               </Box>
             )}
           </Box>
+          )}
         </Box>
 
         {/* Rank 4 & 5 - Regular Cards */}
-        {topUsers.length > 3 && (
+        {!loading && topUsers.length > 3 && (
           <Grid container spacing={3} sx={{ maxWidth: 800, mx: 'auto' }}>
             {topUsers.slice(3).map((user, index) => {
               const rankStyle = getRankColor(user.rank)
