@@ -228,7 +228,7 @@ export default function AdminLeaderboardPage() {
               ) : users.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={6} align="center" sx={{ py: 4 }}>
-                    <EmojiEventsIcon sx={{ fontSize: 48, color: 'text.disabled', mb: 1 }} />
+                    <Box sx={{ mb: 1, opacity: 0.5 }}><EmojiEventsIcon /></Box>
                     <Typography color="text.secondary">
                       Belum ada user di leaderboard. Klik &quot;Tambah User&quot; untuk menambahkan.
                     </Typography>

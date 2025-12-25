@@ -11,12 +11,11 @@ import Alert from '@mui/material/Alert'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
 import CircularProgress from '@mui/material/CircularProgress'
-import Box from '@mui/material/Box'
 
 // Emoji icons
 const Visibility = () => <Box component="span">👁️</Box>
 const VisibilityOff = () => <Box component="span">🙈</Box>
-const LockIcon = () => <Box component="span" sx={{ fontSize: 32 }}>🔐</Box>
+const LockIcon = () => <span style={{ fontSize: 32 }}>🔐</span>
 
 export default function AdminLoginPage() {
   const router = useRouter()
@@ -86,7 +85,7 @@ export default function AdminLoginPage() {
               mb: 2,
             }}
           >
-            <LockIcon sx={{ fontSize: 32, color: 'white' }} />
+            <LockIcon />
           </Box>
           <Typography
             variant="h4"

@@ -102,10 +102,10 @@ export default function AdminDashboard() {
   }, [])
 
   const statCards = [
-    { title: 'Total Programs', count: stats.programs, icon: <SchoolIcon fontSize="large" />, color: '#980f5a' },
-    { title: 'Total Portfolio', count: stats.portfolio, icon: <FolderIcon fontSize="large" />, color: '#2196f3' },
-    { title: 'Total Career', count: stats.career, icon: <WorkIcon fontSize="large" />, color: '#4caf50' },
-    { title: 'Leaderboard Users', count: stats.leaderboard, icon: <PeopleIcon fontSize="large" />, color: '#ff9800' },
+    { title: 'Total Programs', count: stats.programs, icon: <SchoolIcon />, color: '#980f5a' },
+    { title: 'Total Portfolio', count: stats.portfolio, icon: <FolderIcon />, color: '#2196f3' },
+    { title: 'Total Career', count: stats.career, icon: <WorkIcon />, color: '#4caf50' },
+    { title: 'Leaderboard Users', count: stats.leaderboard, icon: <PeopleIcon />, color: '#ff9800' },
   ]
 
   return (
