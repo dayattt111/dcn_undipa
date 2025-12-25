@@ -1,7 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import { Box, Container, Grid2 as Grid, Typography, Chip, Button, Paper, Divider } from '@mui/material'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import Chip from '@mui/material/Chip'
+import Button from '@mui/material/Button'
+import Paper from '@mui/material/Paper'
+import Divider from '@mui/material/Divider'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { IJobPosting } from '@/types/career'
@@ -294,6 +301,7 @@ export default function JobDetailContent({ job }: JobDetailContentProps) {
                       variant="contained"
                       size="large"
                       fullWidth
+                      component="a"
                       href={job.applyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
