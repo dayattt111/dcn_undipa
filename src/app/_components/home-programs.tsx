@@ -44,14 +44,29 @@ const HomeProgramItem = ({ item }: ProgramItemProps) => {
           '&:hover': {
             boxShadow: 2,
             transform: 'translateY(-4px)',
-
-            '& button': {
-              opacity: 1,
-            },
           },
         }}
         onClick={() => onClick(item.slug)}
       >
+        {/* Status Badge */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 16,
+            right: 16,
+            px: 2,
+            py: 0.5,
+            borderRadius: 2,
+            fontSize: 11,
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            backgroundColor: item.status === 'active' ? '#4CAF50' : '#FF9800',
+            color: '#fff',
+          }}
+        >
+          {item.status === 'active' ? 'Aktif' : 'Segera'}
+        </Box>
+
         <Box
           sx={{
             img: {
@@ -71,19 +86,37 @@ const HomeProgramItem = ({ item }: ProgramItemProps) => {
         <Typography
           component='h3'
           variant='h4'
-          sx={{ fontSize: { xs: 18, md: 20 }, mb: 2 }}
+          sx={{ fontSize: { xs: 18, md: 20 }, mb: 2, pr: 4 }}
         >
           {item.title}
         </Typography>
 
-        <Box sx={{ height: 70, overflow: 'hidden' }}>
+        <Box sx={{ minHeight: 70, overflow: 'hidden' }}>
           <Typography
             component='p'
-            sx={{ color: 'text.secondary', fontSize: 15 }}
+            sx={{ color: 'text.secondary', fontSize: 15, lineHeight: 1.6 }}
           >
             {item.description}
           </Typography>
         </Box>
+
+        {/* Participants count */}
+        {item.participants && (
+          <Box sx={{ mt: 3, display: 'flex', alignItems: 'center', gap: 0.5 }}>
+            <Typography
+              sx={{
+                fontSize: 13,
+                fontWeight: 600,
+                color: 'primary.main',
+              }}
+            >
+              {item.participants}
+            </Typography>
+            <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>
+              peserta
+            </Typography>
+          </Box>
+        )}
       </Box>
     </Grid>
   )

@@ -17,7 +17,10 @@ const HomeMotivation = dynamic(
     loading: () => <PageLoader />,
   }
 )
-const HomeServices = dynamic(() => import('./_components//home-services'), {
+const HomeStats = dynamic(() => import('./_components/home-stats'), {
+  loading: () => <PageLoader />,
+})
+const HomeServices = dynamic(() => import('./_components/home-programs'), {
   loading: () => <PageLoader />,
 })
 const HomeCTA = dynamic(() => import('./_components/home-cta'), {
@@ -29,9 +32,10 @@ const HomeContact = dynamic(() => import('./_components/home-contact'), {
 
 const HomePage = (): JSX.Element => {
   return (
-    <Stack direction='column'>
+    <Stack component='main' direction='column'>
       <HomeHero />
       <HomeAbout />
+      <HomeStats />
       <HomeMotivation />
       <HomeServices />
       <HomeCTA />
