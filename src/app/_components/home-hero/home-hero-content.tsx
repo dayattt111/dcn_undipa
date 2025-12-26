@@ -20,17 +20,19 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const MotionTypography = motion(Typography)
 
+// untuk Pemusatan Komponen Hero di Home Page
 const HomeHeroContent = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
+  //untuk Coursel Tekss
   const SERVICES_TEXTS = [
-    'Belajar Bersama 📚',
-    'Berkembang Bersama 🚀',
-    'Raih Milestone Bersama 🏆',
-    'Bangun Karya Nyata 💻',
-    'Komunitas Developer Profesional 👥',
+    'Belajar Bersama',
+    'Berkembang Bersama',
+    'Raih Milestone Bersama',
+    'Bangun Karya Nyata',
+    'Komunitas Developer Profesional',
   ]
-
+  // Carousel effect untuk layanan rong
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % SERVICES_TEXTS.length)
